@@ -23,10 +23,12 @@ class ProdutoController extends Controller
     }
 
     function adicionar(Request $req){
-    	$nome = $req->input('nome');
+        $nome = $req->input('nome');
+        $preco = $req->input('preco');
     	
     	$pdr = new Produto();
-    	$pdr->nome = $nome;
+        $pdr->nome = $nome;
+        $pdr->preco = $preco;
 
     	if ($pdr->save()){
             echo  "<script>alert('Produto $nome adicionado com Sucesso!');</script>";
@@ -38,8 +40,10 @@ class ProdutoController extends Controller
 
     function alterar(Request $req, $id){
         $pdr = Produto::find($id);
-
         $nome = $req->input('nome');
+        $preco = $req->input('preco');
+
+        $pdr->preco = $preco;
         $pdr->nome = $nome;
       
         if ($pdr->save()){

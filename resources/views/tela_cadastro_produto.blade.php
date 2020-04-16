@@ -10,10 +10,14 @@
 <div class="mt-2 p-5">
 	<form method="post" action="{{ route('produto_add') }}">
 		@csrf
-		<h3>Digite um nome:</h3>
+		<h4>Digite um nome:</h4>
 		<input type="text" class="form-control" name="nome" placeholder="Nome">
-		<br>
-		<input type="submit" class="btn btn-success btn-lg btn-block" value="Confirmar">
+		<br><br>
+		<h4>Digite o preço:</h4>
+		<input type="number" class="form-control" step="0.01"  name="preco" placeholder="Preço">
+		<br><br>
+		<input type="submit"  class="btn btn-success btn-lg btn-block" value="Confirmar">
+		
 	</form>
 </div>
 

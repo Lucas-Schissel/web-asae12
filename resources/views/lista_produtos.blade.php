@@ -14,6 +14,7 @@
 			<tr>
 				<th>ID</th>
 				<th>Nome</th>
+				<th>Preço</th>
 				<th>Operações</th>
 			</tr>
 		</thead>
@@ -23,6 +24,7 @@
 		  <tr class="table-light">
 			<td>{{ $u->id }}</td>
 			<td>{{ $u->nome }}</td>
+			<td>R$ {{ $u->preco }}</td>
 
 			<td>
 
