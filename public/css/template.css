@@ -1,0 +1,25 @@
+.btn[type=button]{
+    margin-bottom: 5px;
+    margin: 5px;
+    width: 130px;   
+    border:1px solid #FFFFFF; 
+}
+
+.dropdown-item{
+    background: #5A6268;
+    color: #fff;
+}
+.dropdown-menu{
+   background: #5A6268;
+}
+
+#conteudo{
+    border: 2px solid #5A6268;
+    border-radius: 5px;
+   
+}
+
+.table-overflow{
+    max-height:400px;
+    overflow-y:auto;
+}
