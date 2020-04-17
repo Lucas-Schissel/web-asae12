@@ -25,10 +25,14 @@ class ProdutoController extends Controller
     function adicionar(Request $req){
         $nome = $req->input('nome');
         $preco = $req->input('preco');
+        $descricao = $req->input('descricao');
+        $und = $req->input('und');
     	
     	$pdr = new Produto();
         $pdr->nome = $nome;
         $pdr->preco = $preco;
+        $pdr->descricao = $descricao;
+        $pdr->unidade_venda = $und;
 
     	if ($pdr->save()){
             echo  "<script>alert('Produto $nome adicionado com Sucesso!');</script>";

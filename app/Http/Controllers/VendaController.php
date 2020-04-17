@@ -124,4 +124,23 @@ class VendaController extends Controller
 		return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
 	}
 
+	function excluirItem($id_produto, $id){
+		$venda = Venda::find($id);
+		$subtotal = 0;
+		
+		foreach($venda->produtos as $vp){
+			if($vp->id == $id_produto){
+				$subtotal = $vp->pivot->subtotal;
+			break;
+
+			}
+		}
+
+		$venda->valor = $venda->valor - $subtotal;
+		$venda->produtos()->detach($id_produto);
+		$venda->save();		
+		return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
+
+	}
+
 }

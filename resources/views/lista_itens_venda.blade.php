@@ -25,6 +25,7 @@
                     <td>{{$v->pivot->quantidade}}</td>
                     <td>R$ {{$v->preco}}</td>
                     <td>R$ {{$v->pivot->subtotal}}</td>
+                    <td>{{$v->pivot->create_at}}</td>
                     <td>
                         <a class="btn btn-danger" href="#" onclick="exclui({{ $v->id }})">
                         Excluir
@@ -37,5 +38,12 @@
         </table>
 
     </div>
-
+    
+<script>
+	function exclui(id){
+		if (confirm("Deseja excluir o usuário de id: " + id + "?")){
+			location.href = "/usuario/excluir/" + id;
+		}
+	}
+</script>
 @endsection
