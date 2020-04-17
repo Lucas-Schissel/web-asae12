@@ -19,22 +19,22 @@ class VendaController extends Controller
     }
 	
     function adicionar(Request $req){
-    	$valor = $req->input('valor');
+    	//$valor = $req->input('valor');
 		$id_usuario = $req->input('id_usuario');
 		$id_produto = $req->input('id_produto');
     	
 		$cli = new Venda();
-		$cli->id_produto = $id_produto;
     	$cli->id_usuario = $id_usuario;
-    	$cli->valor = $valor;
+    	$cli->valor = 0;
     	
 
     	if ($cli->save()){
 			echo  "<script>alert('Venda efetuada com Sucesso!');</script>";
     	} else {
     		echo  "<script>alert('Venda nao efetuada!');</script>";
-    	}
-        return VendaController::telaCadastro();
+		}
+		return redirect()->route('vendas_item_novo', ['id' => $cli->id]);
+        //return VendaController::telaCadastro();
 	}
 	
 	function excluir($id){
@@ -95,6 +95,33 @@ class VendaController extends Controller
 
 		return view('lista_itens_venda', ['venda' => $venda]);
 
+	}
+
+	function telaAdicionarItem($id){
+		$venda = Venda::find($id);
+		$produtos = Produto::all();
+
+		return view('tela_cadastro_itens', ['venda' => $venda , 'produtos' => $produtos]);
+	}
+
+	function adicionarItem(Request $req, $id){
+		$id_produto = $req->input('id_produto');
+		$quantidade = $req->input('quantidade');
+
+		$produto = Produto::find($id_produto);
+		$venda = Venda::find($id);
+		$subtotal = $produto->preco * $quantidade;
+
+		$colunas_pivot = [
+				'quantidade' => $quantidade,
+				'subtotal' => $subtotal
+		];
+
+		
+		$venda->produtos()->attach($produto->id, $colunas_pivot);
+		$venda->valor += $subtotal;
+		$venda->save();
+		return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
 	}
 
 }

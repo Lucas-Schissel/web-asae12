@@ -19,17 +19,14 @@
 		</select>
 		<br>
 
-		<h4>Produto:</h4>
+		<!--<h4>Produto:</h4>
 		<select name="id_produto" class="form-control">
         @foreach ($produto as $p)
 		<option value="{{ $p->id}}">{{$p->nome}}</option>
         @endforeach
 		</select>		
-		<br>
-		<input type="text"  class="form-control" name="qtd" default="1">
-		<br>
 		<h4>Valor:</h4>
-		<input type="number" step="0.01" class="form-control" name="valor" placeholder="Valor">
+		<input type="number" step="0.01" class="form-control" name="valor" placeholder="Valor">-->
 		<br>
 		<input type="submit" class="btn btn-success btn-lg btn-block" value="Cadastrar">
 	</form>

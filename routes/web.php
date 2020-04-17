@@ -41,6 +41,12 @@ Route::get('/menu', 'AppController@menu')
 	->name('menu');
 
 //Vendas
+Route::post('/venda/{id}/itens/adicionar', 'VendaController@adicionarItem')
+	->name('vendas_item_add');
+
+Route::get('/venda/{id}/itens/novo', 'VendaController@telaAdicionarItem')
+	->name('vendas_item_novo');
+
 Route::get('/venda/{id}/itens', 'VendaController@itensVenda')
 	->name('vendas_itens');
 
