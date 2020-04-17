@@ -21,8 +21,11 @@
                     <td>{{$v->valor}}</td>
                     <td>{{$v->create_at}}</td>
                     <td>
-                        <a class="btn btn-info" href="#">Itens</a>
-                        <i class="icon-table"></i>
+                        <a class="btn btn-info" href="{{route('vendas_itens', ['id' => $v->id])}}">
+                        Itens
+                        <i class="icon-table"></i>                    
+                        </a>
+                        
                     </td>
                 </tr>
                 @endforeach

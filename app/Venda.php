@@ -14,6 +14,8 @@ class Venda extends Model
     }
 
     function produtos(){
-    	return $this->belongsToMany('App\Produto', 'produtos_venda','id_venda', 'id_produto')->withPivot(['quantidade','subtotal'])->withTimestamps();
+        return $this->belongsToMany('App\Produto', 'produtos_venda','id_venda', 'id_produto')
+        ->withPivot(['id','quantidade','subtotal'])
+        ->withTimestamps();
     }
 }

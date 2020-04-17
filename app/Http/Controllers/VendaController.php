@@ -90,4 +90,11 @@ class VendaController extends Controller
 		return view('tela_login');
 	}
 
+	function itensVenda($id){
+		$venda = Venda::find($id);
+
+		return view('lista_itens_venda', ['venda' => $venda]);
+
+	}
+
 }
