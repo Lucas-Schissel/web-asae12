@@ -41,6 +41,8 @@ Route::get('/menu', 'AppController@menu')
 	->name('menu');
 
 //Vendas
+Route::get('/venda/listar', 'VendaController@listar')
+	->name('venda_listar');
 
 Route::get('/venda/cadastrar', 'VendaController@telaCadastro')
 	->name('venda_cadastro');

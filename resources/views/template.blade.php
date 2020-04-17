@@ -86,6 +86,11 @@
 								<i class="icon-cart-plus"></i>
 								Vender
 								</a>
+							<div class= "dropdown-divider"></div>	
+								<a class="dropdown-item" href="{{route('venda_listar')}}">
+								<i class="icon-cart-plus"></i>
+								Lista Tudo
+								</a>
 							</div>
 
 							

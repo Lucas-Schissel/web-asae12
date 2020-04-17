@@ -82,5 +82,12 @@ class VendaController extends Controller
 		return view('tela_login');
 	}
 
+	function listar(){
+		if (session()->has("login")){
+		$vendas = Venda::all();
+		return view('lista_vendas_geral',['vendas' => $vendas]);
+		}
+		return view('tela_login');
+	}
 
 }

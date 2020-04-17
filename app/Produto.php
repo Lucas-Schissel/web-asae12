@@ -10,6 +10,8 @@ class Produto extends Model
     protected $primaryKey ='id';
 
     function vendas(){
-    	return $this->hasMany('App\Venda', 'id_produto', 'id');
+        return $this->belongsToMany('App\Produto', 'produtos_venda','id_venda', 'id_produto')
+        ->withPivot(['quantidade','subtotal'])
+        ->withTimestamps();
     }
 }
