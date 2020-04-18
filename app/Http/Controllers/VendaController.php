@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Venda;
 use App\Cliente;
 use App\Produto;
+use App\Itens;
 
 class VendaController extends Controller
 {
@@ -100,8 +101,10 @@ class VendaController extends Controller
 	function telaAdicionarItem($id){
 		$venda = Venda::find($id);
 		$produtos = Produto::all();
+		$itens = Itens::all();
 
-		return view('tela_cadastro_itens', ['venda' => $venda , 'produtos' => $produtos]);
+		return view('tela_cadastro_itens')->with(compact('venda','produtos','itens'));
+		
 	}
 
 	function adicionarItem(Request $req, $id){
@@ -120,25 +123,19 @@ class VendaController extends Controller
 		
 		$venda->produtos()->attach($produto->id, $colunas_pivot);
 		$venda->valor += $subtotal;
-		$venda->save();
+		$venda->save();		
 		return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
 	}
 
-	function excluirItem($id_produto, $id){
+	function excluirItem($id , $id_item){
 		$venda = Venda::find($id);
-		$subtotal = 0;
-		
-		foreach($venda->produtos as $vp){
-			if($vp->id == $id_produto){
-				$subtotal = $vp->pivot->subtotal;
-			break;
+		$item = Itens::find($id_item);
+		$item->delete();
 
-			}
-		}
+		$venda->valor = $venda->valor - $item->subtotal;
+	
+		$venda->save();
 
-		$venda->valor = $venda->valor - $subtotal;
-		$venda->produtos()->detach($id_produto);
-		$venda->save();		
 		return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
 
 	}

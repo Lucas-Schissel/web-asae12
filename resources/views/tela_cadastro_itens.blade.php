@@ -36,15 +36,16 @@
 			</thead>
 			<tbody>
 				@foreach($venda->produtos as $v)
+				
 				<tr>
-					<td>{{$v->id}}</td>
+					<td>{{$v->pivot->id}}</td>
 					<td>{{$v->nome}}</td>
 					<td>{{$v->pivot->quantidade}}</td>
 					<td>R$ {{$v->preco}}</td>
 					<td>R$ {{$v->pivot->subtotal}}</td>
 					<td>{{$v->pivot->create_at}}</td>
 					<td>
-						<a class="btn btn-danger" href="#" onclick="exclui({{$v->id}})">
+						<a class="btn btn-danger" href="#" onclick="exclui({{$v->pivot->id}})">
 						<i class="icon-trash-empty"></i>
 						</a>
 					</td>
@@ -54,6 +55,7 @@
 		</table>
 
 	</div>
+	<a class="btn btn-danger" href="{{ route('venda_listar') }}" > Finalizar Venda</a>
 	
 </div>
 

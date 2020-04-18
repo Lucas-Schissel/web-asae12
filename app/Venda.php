@@ -18,4 +18,9 @@ class Venda extends Model
         ->withPivot(['id','quantidade','subtotal'])
         ->withTimestamps();
     }
+
+    function itens(){
+        return $this->belongsToMany('App\Itens','id_venda')
+        ->withPivot(['id']);
+    }
 }
