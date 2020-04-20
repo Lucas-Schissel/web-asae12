@@ -54,7 +54,7 @@
 
 	<footer>
 	  <h3>
-		  	ASAE-11 Lucas Schissel
+		  	ASAE-12 Lucas Schissel
 	  		<i class="icon-graduation-cap"></i>
 	  </h3>
 	</footer> 

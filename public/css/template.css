@@ -23,3 +23,17 @@
     max-height:400px;
     overflow-y:auto;
 }
+
+.config{
+    background-color: #5A6268;
+    height: 80vh;
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 100px 1fr 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+  }
+
+.tela_vendas{
+    background-color: #5A6268;
+  }
