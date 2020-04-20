@@ -9,11 +9,15 @@
 
 <div class="table-overflow">
 
-	<table class="table table-bordered table-hover mt-2">
+	<table id="tablesorter-imasters" class="table table-bordered table-hover mt-2">
 		<thead class="thead-dark">
 			<tr>
 				<th>ID</th>
-				<th>Nome</th>
+				<th>Nome
+					 <a class="btn btn-success" href="#">
+					 <i class="icon-sort-name-up"></i>
+					 </a>
+				</th>
 				<th>Login</th>
 				<th>Operações</th>
 			</tr>
@@ -41,7 +45,7 @@
 			 <a class="btn btn-success" href="{{ route('vendas_cliente', [ 'id' => $u->id ])}}">
 			 Vendas
 			 <i class="icon-dollar"></i>
-			</a>
+			 </a>
 
 			</td>
 		  </tr>
@@ -66,6 +70,14 @@
 			location.href = "/usuario/excluir/" + id;
 		}
 	}
+</script>
+
+<script type="text/javascript">
+$(function() {	
+            //aqui podem ter todas as outras instruções JQuery do site, sem perda
+	$("#tablesorter-imasters").tablesorter();
+            //aqui podem ter mais instruções JQuery, não importa a ordem
+});	
 </script>
 
 @endsection

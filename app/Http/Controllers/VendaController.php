@@ -20,9 +20,7 @@ class VendaController extends Controller
     }
 	
     function adicionar(Request $req){
-    	//$valor = $req->input('valor');
 		$id_usuario = $req->input('id_usuario');
-		$id_produto = $req->input('id_produto');
     	
 		$cli = new Venda();
     	$cli->id_usuario = $id_usuario;

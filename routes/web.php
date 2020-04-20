@@ -93,3 +93,25 @@ Route::get('/produto/excluir/{id}', 'ProdutoController@excluir')
 
 Route::get('/produto/listar', 'ProdutoController@listar')
 	->name('produto_listar');
+
+//Categorias
+
+Route::get('/categoria/cadastro', 'categoriaController@telaCadastro')
+	->name('categoria_cadastro');
+
+Route::get('/categoria/alterar/{id}', 'categoriaController@telaAlteracao')
+	->name('categoria_update');
+	
+Route::post('/categoria/adicionar', 'categoriaController@adicionar')
+	->name('categoria_add');
+
+Route::post('/categoria/alterar/{id}', 'categoriaController@alterar')
+	->name('categoria_alterar');
+
+Route::get('/categoria/excluir/{id}', 'categoriaController@excluir')
+	->name('categoria_delete');
+
+Route::get('/categoria/listar', 'categoriaController@listar')
+	->name('categoria_listar');
+
+//Unidades

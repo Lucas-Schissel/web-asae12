@@ -7,22 +7,30 @@
 	</span>
 </div>
 
-<div class="mt-2 p-5">
+<div class="mt-2 p-2">
 	<form method="post" action="{{ route('produto_add') }}">
 		@csrf
 		<h4>Digite um nome:</h4>
-		<input type="text" class="form-control" name="nome" placeholder="Nome">
+			<input type="text" class="form-control" name="nome" placeholder="Nome">
 		<br>
 		<h4>Digite o preço:</h4>
-		<input type="number" class="form-control" step="0.01"  name="preco" placeholder="Preço">
+			<input type="number" class="form-control" step="0.01"  name="preco" placeholder="Preço">
 		<br>
-		<h4>Digite a Descriçao:</h4>
-		<input type="text" class="form-control" name="descricao" placeholder="Descriçao">
+			<h4>Escolha uma categoria:</h4>
+			<select name="id_categoria" class="form-control">
+			@foreach ($categoria as $c)
+			<option value="{{ $c->id}}">{{$c->nome}}</option>
+			@endforeach
+			</select>
 		<br>
-		<h4>Escolha a und</h4>
-		<input type="text" class="form-control" name="und" placeholder="Unidade">
+			<h4>Escolha uma und:</h4>
+			<select name="id_unidade" class="form-control">
+			@foreach ($unidade as $u)
+			<option value="{{ $u->id}}">{{$u->nome}}</option>
+			@endforeach
+			</select>
 		<br>
-		<input type="submit"  class="btn btn-success btn-lg btn-block" value="Confirmar">
+			<input type="submit"  class="btn btn-success btn-lg btn-block" value="Confirmar">
 		
 	</form>
 </div>

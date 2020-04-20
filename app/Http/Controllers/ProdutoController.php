@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Produto;
+use App\Categoria;
+use App\Unidade;
 
 class ProdutoController extends Controller
 {
     function telaCadastro(){
         if (session()->has("login")){
-            return view("tela_cadastro_produto");
+            $categoria = Categoria::All();
+            $unidade = Categoria::All();
+
+            return view('tela_cadastro_produto')->with(compact('categoria','unidade'));
         }
         return view('tela_login');
     }
@@ -25,14 +30,14 @@ class ProdutoController extends Controller
     function adicionar(Request $req){
         $nome = $req->input('nome');
         $preco = $req->input('preco');
-        $descricao = $req->input('descricao');
+        $categoria = $req->input('categoria');
         $und = $req->input('und');
     	
     	$pdr = new Produto();
         $pdr->nome = $nome;
         $pdr->preco = $preco;
-        $pdr->descricao = $descricao;
-        $pdr->unidade_venda = $und;
+        $pdr->id_categoria = $categoria;
+        $pdr->id_unidade = $und;
 
     	if ($pdr->save()){
             echo  "<script>alert('Produto $nome adicionado com Sucesso!');</script>";

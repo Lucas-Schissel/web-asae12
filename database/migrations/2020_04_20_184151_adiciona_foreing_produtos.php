@@ -14,11 +14,11 @@ class AdicionaForeingProdutos extends Migration
     public function up()
     {
         Schema::table('produtos', function (Blueprint $table) {
-            $table->unsignedBigInteger('categoria')->after('nome'); 
-            $table->unsignedBigInteger('unidade_venda')->after('categoria'); 
+            $table->unsignedBigInteger('id_categoria')->after('nome'); 
+            $table->unsignedBigInteger('id_unidade')->after('categoria'); 
 
-            $table->foreign('categoria')->references('id')->on('categorias');
-            $table->foreign('unidade_venda')->references('id')->on('unidades');
+            $table->foreign('id_categoria')->references('id')->on('categorias');
+            $table->foreign('id_unidade')->references('id')->on('unidades');
 
         });
   

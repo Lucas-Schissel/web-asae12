@@ -124,6 +124,29 @@
 
 					 </div>
 					</li>
+
+					<li class ="nav-item">
+					 <div class="dropdown">
+
+							<button class="btn btn-secondary" type="button" data-toggle="dropdown">
+								Categorias
+								<i class="icon-tags"></i>
+							</button>
+
+							<div class= "dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class= "dropdown-item" href="{{route('categoria_listar')}}">
+								<i class="icon-th-list"></i>
+								Listar
+								</a>
+							<div class= "dropdown-divider"></div>
+								<a class= "dropdown-item" href="{{route('categoria_cadastro')}}">
+								<i class="icon-pencil"></i>
+								Cadastrar								
+								</a>
+							</div>
+
+					 </div>
+					</li>
 					
 					</ul>
 					
