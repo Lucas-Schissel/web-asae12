@@ -1,8 +1,13 @@
 @extends('template')
 @section('conteudo')
 
+<div class= "row">
+	<span class="d-block p-2  bg-dark text-center text-white w-100">
+		<h1>Alteraçao do Produto</h1>
+	</span>
+</div>
+
 <div class="text-center p-5">
-	<h1>Alteração de Produto</h1>
 	<form method="post" action="{{ route('produto_alterar', ['id' => $pdr->id]) }}">
 		@csrf
 		<br>

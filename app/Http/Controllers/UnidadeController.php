@@ -7,5 +7,73 @@ use App\Unidade;
 
 class UnidadeController extends Controller
 {
-    //
+    
+    function telaCadastro(){
+        if (session()->has("login")){
+            return view('telas_cadastro.cadastro_unidades');
+        }
+            return view('tela_login');
+    }
+
+    function telaAlteracao($id){
+        if (session()->has("login")){
+            $unidade = Unidade::find($id);
+            return view("telas_updates.alterar_unidade", [ "und" => $unidade ]);
+        }
+        return view('tela_login');
+    }
+
+    function adicionar(Request $req){
+        $nome = $req->input('nome');
+            	
+    	$unidade = new Unidade();
+        $unidade->nome = $nome;     
+
+    	if ($unidade->save()){
+            echo  "<script>alert('Unidade $nome adicionada com Sucesso!');</script>";
+    	} else {
+            echo  "<script>alert('Unidade $nome nao foi adicionada!!!');</script>";
+    	}
+        return UnidadeController::telaCadastro();
+    }
+
+    function alterar(Request $req, $id){
+        $unidade = Unidade::find($id);
+        $nome = $req->input('nome');
+
+        $unidade->nome = $nome;
+        
+        if ($unidade->save()){
+            echo  "<script>alert('Unidade $nome alterada com Sucesso!');</script>";
+        } else {
+            echo  "<script>alert('Unidade $nome nao foi alterada!!!');</script>";
+        }
+
+        return UnidadeController::listar();
+    }
+
+    function listar(){
+        if (session()->has("login")){
+            $unidade = Unidade::all();
+            return view("listas.lista_unidades", [ "und" => $unidade ]);
+            
+		}else{
+            return view('tela_login');
+        }
+    }
+
+    function excluir($id){
+        if (session()->has("login")){
+            $unidade = Unidade::find($id);
+
+            if ($unidade->delete()){
+                echo  "<script>alert('Unidade $id excluída com sucesso');</script>";
+            } else {
+                echo  "<script>alert('Undade $id nao foi excluída!!!');</script>";
+            }
+            return UnidadeController::listar();
+        }else{
+            return view('tela_login');
+        }
+    }
 }

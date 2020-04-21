@@ -9,7 +9,7 @@ class CategoriaController extends Controller
 {
     function telaCadastro(){
         if (session()->has("login")){
-            return view('tela_cadastro_categoria');
+            return view('telas_cadastro.cadastro_categoria');
         }
             return view('tela_login');
     }
@@ -17,7 +17,7 @@ class CategoriaController extends Controller
     function telaAlteracao($id){
         if (session()->has("login")){
             $ctg = Categoria::find($id);
-            return view("telas_updates.tela_alterar_categoria", [ "ctg" => $ctg ]);
+            return view("telas_updates.alterar_categoria", [ "ctg" => $ctg ]);
         }
         return view('tela_login');
     }
@@ -59,7 +59,7 @@ class CategoriaController extends Controller
     function listar(){
         if (session()->has("login")){
             $ctg = Categoria::all();
-            return view("lista_categorias", [ "ctg" => $ctg ]);
+            return view("listas.lista_categorias", [ "ctg" => $ctg ]);
             
 		}else{
             return view('tela_login');
@@ -79,12 +79,6 @@ class CategoriaController extends Controller
         }else{
             return view('tela_login');
         }
-
-
     }
-
-
-
-
 
 }

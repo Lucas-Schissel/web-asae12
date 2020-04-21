@@ -3,7 +3,7 @@
 
 <div class= "row">
 	<span class="d-block p-2 bg-dark text-center text-white w-100">
-		<h1>Venda para Clientes</h1>
+		<h1>Cadastro de Venda</h1>
 	</span>
 </div>
 
@@ -23,7 +23,6 @@
 </div>
 
 <div class="mt-2 p-2">
-@yield('items')
 </div>
 
 @endsection

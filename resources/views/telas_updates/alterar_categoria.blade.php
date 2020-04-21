@@ -17,7 +17,6 @@
 			<input type="text" class="form-control" name="descricao"  value="{{ $ctg->descricao }}">
 		<br>
 			<input type="submit"  class="btn btn-success btn-lg btn-block" value="Salvar alteraçoes">
-		
 	</form>
 </div>
 
