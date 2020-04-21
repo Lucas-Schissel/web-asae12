@@ -13,8 +13,10 @@
 		<thead class="thead-dark">
 			<tr>
 				<th>ID</th>
+				<th>Categoria</th>
 				<th>Nome</th>
 				<th>Preço</th>
+				<th>Unidade</th>
 				<th>Operações</th>
 			</tr>
 		</thead>
@@ -23,8 +25,10 @@
 		@foreach ($pdr as $p)
 		  <tr class="table-light">
 			<td>{{ $p->id }}</td>
+			<td>{{ $p->categorias->nome }}</td>
 			<td>{{ $p->nome }}</td>
 			<td>R$ {{ $p->preco }}</td>
+			<td>{{ $p->unidades->nome }}</td>
 
 			<td>
 
@@ -44,7 +48,6 @@
 		@endforeach
 		</tbody>
 	</table>
-
 </div>
 
 <div class= "row">

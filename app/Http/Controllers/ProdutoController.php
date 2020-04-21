@@ -12,9 +12,9 @@ class ProdutoController extends Controller
     function telaCadastro(){
         if (session()->has("login")){
             $categoria = Categoria::All();
-            $unidade = Categoria::All();
+            $unidade = Unidade::All();
 
-            return view('telas_cadastro.cadastro_produtos')->with(compact('categoria','unidade'));
+            return view('telas_cadastro.cadastro_produtos',["ctg" => $categoria],["und" => $unidade]);
         }
         return view('tela_login');
     }
@@ -30,8 +30,8 @@ class ProdutoController extends Controller
     function adicionar(Request $req){
         $nome = $req->input('nome');
         $preco = $req->input('preco');
-        $categoria = $req->input('categoria');
-        $und = $req->input('und');
+        $categoria = $req->input('id_categoria');
+        $und = $req->input('id_unidade');
     	
     	$pdr = new Produto();
         $pdr->nome = $nome;

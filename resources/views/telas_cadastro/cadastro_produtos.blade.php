@@ -13,19 +13,19 @@
 		<h4>Digite um nome:</h4>
 			<input type="text" class="form-control" name="nome" placeholder="Nome">
 		<br>
-		<h4>Digite o preço:</h4>
+		<h4>Digite o preço Unitário:</h4>
 			<input type="number" class="form-control" step="0.01"  name="preco" placeholder="Preço">
 		<br>
 			<h4>Escolha uma categoria:</h4>
 			<select name="id_categoria" class="form-control">
-			@foreach ($categoria as $c)
+			@foreach ($ctg as $c)
 			<option value="{{ $c->id}}">{{$c->nome}}</option>
 			@endforeach
 			</select>
 		<br>
 			<h4>Escolha uma und:</h4>
 			<select name="id_unidade" class="form-control">
-			@foreach ($unidade as $u)
+			@foreach ($und as $u)
 			<option value="{{ $u->id}}">{{$u->nome}}</option>
 			@endforeach
 			</select>

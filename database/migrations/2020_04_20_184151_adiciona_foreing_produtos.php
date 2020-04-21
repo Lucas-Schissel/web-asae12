@@ -15,7 +15,7 @@ class AdicionaForeingProdutos extends Migration
     {
         Schema::table('produtos', function (Blueprint $table) {
             $table->unsignedBigInteger('id_categoria')->after('nome'); 
-            $table->unsignedBigInteger('id_unidade')->after('categoria'); 
+            $table->unsignedBigInteger('id_unidade')->after('id_categoria'); 
 
             $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->foreign('id_unidade')->references('id')->on('unidades');
