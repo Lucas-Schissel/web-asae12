@@ -13,8 +13,8 @@
 
 		<h4>Selecione um cliente:</h4>
 		<select name="id_usuario" class="form-control">
-        @foreach ($usuario as $u)
-        <option value="{{ $u->id}}">{{$u->nome}}</option>
+        @foreach ($cli as $c)
+        <option value="{{ $c->id}}">{{$c->nome}}</option>
         @endforeach
 		</select>
 		<br>

@@ -1,31 +1,32 @@
 @extends('template')
 @section('conteudo')
 
-  <div class="card-body">
- 		 <div class = "row">
-			<div id="conteudo">
-			<h3>Cliente: {{$venda->usuario->nome}} Venda Nº {{ $venda->id }}</h3>
-			</div>
-		 </div>
-  </div>
+<div class= "row">
+	<span class="d-block p-2 bg-dark text-center text-white w-100">
+		<h2>Cadastro de Itens</h2>
+	</span>
+</div>
 
-
-<nav class="navbar navbar-dark bg-dark">
-  <form class="form-inline">
-    <div class="input-group">
-      <div class="input-group-prepend disabled" aria-disabled="true">
-        <span class="input-group-text disabled" id="basic-addon1" aria-disabled="true">Cliente:</span>
-      </div>
-      <input type="text" class="form-control" placeholder="{{$venda->usuario->nome}}" aria-label="Username" aria-describedby="">
-    </div>
-  </form>
-</nav>
+<ul class="list-group list-group-horizontal-sm m-2">
+  <li class="list-group-item ">
+     	Cliente:
+    <span class="badge badge-primary badge-pill">{{ $venda->usuario->nome}}</span>
+  </li>
+  <li class="list-group-item ">
+     	Nº Venda:
+    <span class="badge badge-primary badge-pill">{{ $venda->id }}</span>
+  </li>
+  <li class="list-group-item ">
+  		Nº Itens:
+    <span class="badge badge-primary badge-pill">{{count($venda->produtos)}}</span>
+  </li>
+</ul>
 
 <div class="mt-2 p-2">
 	<form method="post" action="{{route('vendas_item_add',['id' => $venda->id])}}">
 		@csrf
 		<select name="id_produto" class="form-control">
-        @foreach ($produtos as $p)
+        @foreach ($produto as $p)
         <option value="{{ $p->id}}">{{$p->nome}}</option>
         @endforeach
         </select>
@@ -37,7 +38,7 @@
 		<br>
 	</form>
 
-	<h2> Itens ate o momento R$ {{$venda->valor}}</h2>
+	<h2> Valor Total: R$ {{$venda->valor}}</h2>
 	<div class="table-overflow">
 
 		

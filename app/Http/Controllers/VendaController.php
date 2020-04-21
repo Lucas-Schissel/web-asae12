@@ -14,10 +14,19 @@ class VendaController extends Controller
 		if (session()->has("login")){
 			$cliente = Cliente::all();
 			$produto = Produto::all();
-			return view ("tela_vendas",["pdr"=>$produto],["cli"=>$cliente]);
+			return view ("telas_cadastro.cadastro_vendas",["pdr"=>$produto],["cli"=>$cliente]);
 		}
 			return view('tela_login');		
-    }
+	}
+	
+	function telaAdicionarItem($id){
+		$venda = Venda::find($id);
+		$produto = Produto::all();
+		$itens = Itens::all();
+
+		return view('telas_cadastro.cadastro_itens')->with(compact('venda','produto','itens'));
+		
+	}
 	
     function adicionar(Request $req){
 		$id_usuario = $req->input('id_usuario');
@@ -94,15 +103,6 @@ class VendaController extends Controller
 
 		return view('listas.lista_itens_venda', ['vnd' => $venda]);
 
-	}
-
-	function telaAdicionarItem($id){
-		$vnd = Venda::find($id);
-		$pdr = Produto::all();
-		$itens = Itens::all();
-
-		return view('telas_cadastro.itens')->with(compact('vnd','pdr','itens'));
-		
 	}
 
 	function adicionarItem(Request $req, $id){

@@ -11,7 +11,7 @@ class ClienteController extends Controller
         if (session()->has("login")){
             session()->forget("login");
         }
-    	return view("telas_cadastro.cadastro_cliente");
+    	return view("cadastro_clientes");
     }
 
     function telaAlteracao($id){
