@@ -49,25 +49,70 @@
 
 					 </div>
 					</li>
+
+					<li class= "nav-item">
+					 <div class= "dropdown">
+
+							<button class= "btn btn-secondary" type="button" data-toggle="dropdown">
+								Cadastros
+								<i class="icon-pencil"></i>
+							</button>
+							
+							<div class= "dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class= "dropdown-item" href="{{route('usuario_cadastro')}}"> 
+								<i class="icon-user-circle-o"></i>	
+								Clientes														
+								</a>
+								<div class= "dropdown-divider"></div>
+								<a class= "dropdown-item" href="{{route('produto_cadastro')}}"> 
+								<i class="icon-tags"></i>
+								Produtos								
+								</a>
+								<div class= "dropdown-divider"></div>
+								<a class= "dropdown-item" href="{{route('categoria_cadastro')}}"> 
+								<i class="icon-sitemap"></i>
+								Categorias							
+								</a>
+								<div class= "dropdown-divider"></div>
+								<a class= "dropdown-item" href="{{route('unidade_cadastro')}}"> 
+								<i class="icon-balance-scale"></i>
+								Unidades							
+								</a>
+								
+							</div>
+
+					 </div>
+					</li>
 					
 					<li class="nav-item">
 					 <div class="dropdown">
 
 							<button class="btn btn-secondary" type="button" data-toggle="dropdown">
-								Clientes
-								<i class="icon-user-circle-o"></i>
+								Listas
+								<i class="icon-table"></i>
 							</button>
 
 							<div class= "dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class= "dropdown-item" href="{{route('usuario_listar')}}">
-								<i class="icon-th-list"></i>
-								Listar
+								<a class= "dropdown-item" href="{{route('usuario_listar')}}"> 
+								<i class="icon-user-circle-o"></i>	
+								Clientes														
 								</a>
-							<div class= "dropdown-divider"></div>
-								<a class= "dropdown-item" href="{{route('usuario_cadastro')}}">
-								<i class="icon-pencil"></i>
-								Cadastrar								
+								<div class= "dropdown-divider"></div>
+								<a class= "dropdown-item" href="{{route('produto_listar')}}"> 
+								<i class="icon-tags"></i>
+								Produtos								
 								</a>
+								<div class= "dropdown-divider"></div>
+								<a class= "dropdown-item" href="{{route('categoria_listar')}}"> 
+								<i class="icon-sitemap"></i>
+								Categorias							
+								</a>
+								<div class= "dropdown-divider"></div>
+								<a class= "dropdown-item" href="{{route('unidade_listar')}}"> 
+								<i class="icon-balance-scale"></i>
+								Unidades							
+								</a>
+								
 							</div>
 
 					 </div>	
@@ -78,7 +123,7 @@
 
 							<button class="btn btn-secondary" type="button" data-toggle="dropdown">
 								Vendas
-								<i class="icon-table"></i>
+								<i class="icon-basket"></i>
 							</button>
 
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -100,56 +145,9 @@
 
 							
 					 </div>
-					</li>
-
-					<li class ="nav-item">
-					 <div class="dropdown">
-
-							<button class="btn btn-secondary" type="button" data-toggle="dropdown">
-								Produtos
-								<i class="icon-tags"></i>
-							</button>
-
-							<div class= "dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class= "dropdown-item" href="{{route('produto_listar')}}">
-								<i class="icon-th-list"></i>
-								Listar
-								</a>
-							<div class= "dropdown-divider"></div>
-								<a class= "dropdown-item" href="{{route('produto_cadastro')}}">
-								<i class="icon-pencil"></i>
-								Cadastrar								
-								</a>
-							</div>
-
-					 </div>
-					</li>
-
-					<li class ="nav-item">
-					 <div class="dropdown">
-
-							<button class="btn btn-secondary" type="button" data-toggle="dropdown">
-								Categorias
-								<i class="icon-tags"></i>
-							</button>
-
-							<div class= "dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class= "dropdown-item" href="{{route('categoria_listar')}}">
-								<i class="icon-th-list"></i>
-								Listar
-								</a>
-							<div class= "dropdown-divider"></div>
-								<a class= "dropdown-item" href="{{route('categoria_cadastro')}}">
-								<i class="icon-pencil"></i>
-								Cadastrar								
-								</a>
-							</div>
-
-					 </div>
-					</li>
+					</li>			
 					
 					</ul>
-					
 				</div>
 			</nav>
      </div>

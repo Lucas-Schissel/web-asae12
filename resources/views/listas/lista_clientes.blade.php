@@ -13,11 +13,7 @@
 		<thead class="thead-dark">
 			<tr>
 				<th>ID</th>
-				<th>Nome
-					 <a class="btn btn-success" href="#">
-					 <i class="icon-sort-name-up"></i>
-					 </a>
-				</th>
+				<th>Nome</th>
 				<th>Login</th>
 				<th>Operações</th>
 			</tr>

@@ -67,7 +67,7 @@ class ProdutoController extends Controller
     function listar(){
         if (session()->has("login")){
             $pdr = Produto::all();
-            return view("lista_produtos", [ "pdr" => $pdr ]);
+            return view("listas.lista_produtos", [ "pdr" => $pdr ]);
             
 		}else{
             return view('tela_login');

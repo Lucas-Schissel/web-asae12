@@ -115,3 +115,21 @@ Route::get('/categoria/listar', 'categoriaController@listar')
 	->name('categoria_listar');
 
 //Unidades
+
+Route::get('/unidade/cadastro', 'unidadeController@telaCadastro')
+	->name('unidade_cadastro');
+
+Route::get('/unidade/alterar/{id}', 'unidadeController@telaAlteracao')
+	->name('unidade_update');
+	
+Route::post('/unidade/adicionar', 'unidadeController@adicionar')
+	->name('unidade_add');
+
+Route::post('/unidade/alterar/{id}', 'unidadeController@alterar')
+	->name('unidade_alterar');
+
+Route::get('/unidade/excluir/{id}', 'unidadeController@excluir')
+	->name('unidade_delete');
+
+Route::get('/unidade/listar', 'unidadeController@listar')
+	->name('unidade_listar');
