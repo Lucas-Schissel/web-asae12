@@ -12,13 +12,13 @@
 <div>
 <BR>
 <BR>
-<h2>{{ $value = session()->get('login')}}</h2>
+<h2>{{ $value = session()->get('login->id')}}</h2>
 <BR>
 <BR>
 <BR>
 <BR>
 <div class="text text-center" >
-    <h2> ASAE -11 </h2>
+    <h2> ASAE - 12 </h2>
 <div>
 
 

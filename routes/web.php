@@ -44,7 +44,7 @@ Route::get('/menu', 'AppController@menu')
 	->name('config');
 
 //Vendas
-Route::get('/venda/{id}/itens/remover/{id_produto}', 'VendaController@excluirItem')
+Route::get('/venda/{id}/itens/remover/{id_pivot}', 'VendaController@excluirItem')
 	->name('vendas_item_delete');
 
 Route::post('/venda/{id}/itens/adicionar', 'VendaController@adicionarItem')

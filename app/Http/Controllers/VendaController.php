@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Venda;
 use App\Cliente;
@@ -125,13 +126,12 @@ class VendaController extends Controller
 		return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
 	}
 
-	function excluirItem($id , $id_item){
+	function excluirItem($id , $id_pivot){
 		$venda = Venda::find($id);
-		$item = Itens::find($id_item);
-		$item->delete();
+		$subtotal = DB::table('produtos_venda')->where('id',$id_pivot)->value('subtotal');
 
-		$venda->valor = $venda->valor - $item->subtotal;
-	
+		$venda->valor = $venda->valor - $subtotal;
+		$venda->produtos()->wherePivot('id','=',$id_pivot)->detach();
 		$venda->save();
 
 		return redirect()->route('vendas_item_novo', ['id' => $venda->id]);

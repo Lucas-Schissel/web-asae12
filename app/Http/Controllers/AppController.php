@@ -34,7 +34,7 @@ class AppController extends Controller
 		$senha = $req->input('senha');
 		
 
-    	$cli = Cliente::where('login', '=', $login)->first();
+    	$cli = Cliente::where('login','=', $login)->first();
 
     	if ($cli and $cli->senha == $senha){
 

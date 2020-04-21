@@ -24,7 +24,11 @@
   		Valor Total:
     <span class="badge badge-primary badge-pill">R$ {{$venda->valor}}</span>
   </li>
+  <li class="list-group-item ">
+ 	 <a class="btn btn-info" href="{{ route('venda_listar') }}" > Finalizar Venda</a>
+  </li>
 </ul>
+
 
 <div class="mt-1 p-1">
 	<form method="post" action="{{route('vendas_item_add',['id' => $venda->id])}}">
@@ -55,17 +59,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($venda->produtos as $v)
+				@foreach($venda->produtos as $p)
 				
 				<tr>
-					<td>{{$v->pivot->id}}</td>
-					<td>{{$v->nome}}</td>
-					<td>{{$v->pivot->quantidade}}</td>
-					<td>R$ {{$v->preco}}</td>
-					<td>R$ {{$v->pivot->subtotal}}</td>
-					<td>{{$v->pivot->create_at}}</td>
+					<td>{{$p->pivot->id}}</td>
+					<td>{{$p->nome}}</td>
+					<td>{{$p->pivot->quantidade}}</td>
+					<td>R$ {{$p->preco}}</td>
+					<td>R$ {{$p->pivot->subtotal}}</td>
+					<td>{{$p->pivot->create_at}}</td>
 					<td>
-						<a class="btn btn-danger" href="#" onclick="exclui({{$v->pivot->id}})">
+						<a class="btn btn-danger" href="#" onclick="exclui({{$p->pivot->id}})">
 						<i class="icon-trash-empty"></i>
 						</a>
 					</td>
@@ -75,7 +79,7 @@
 		</table>
 
 	</div>
-	<a class="btn btn-danger" href="{{ route('venda_listar') }}" > Finalizar Venda</a>
+	
 	
 </div>
 
