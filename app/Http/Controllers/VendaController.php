@@ -83,9 +83,9 @@ class VendaController extends Controller
 	function todasVendas(){
 		if (session()->has("login")){
 			$vendas = Venda::all();
-			$produto = Produto::all();
-			$cliente = Cliente::all();
-			return view('lista_todas_vendas')->with(compact('produto','cliente','vendas'));
+			$produtos = Produto::all();
+			$clientes = Cliente::all();
+			return view('listas.lista_todas_vendas')->with(compact('produtos','clientes','vendas'));
 		}
 		return view('tela_login');
 	}
@@ -93,7 +93,7 @@ class VendaController extends Controller
 	function listar(){
 		if (session()->has("login")){
 		$vendas = Venda::all();
-		return view('listas.lista_vendas_geral',['vnd' => $vendas]);
+		return view('listas.lista_vendas_geral',['vendas' => $vendas]);
 		}
 		return view('tela_login');
 	}
@@ -101,7 +101,7 @@ class VendaController extends Controller
 	function itensVenda($id){
 		$venda = Venda::find($id);
 
-		return view('listas.lista_itens_venda', ['vnd' => $venda]);
+		return view('listas.lista_itens_venda', ['venda' => $venda]);
 
 	}
 

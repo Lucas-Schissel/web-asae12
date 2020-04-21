@@ -20,14 +20,18 @@
   		Nº Itens:
     <span class="badge badge-primary badge-pill">{{count($venda->produtos)}}</span>
   </li>
+  <li class="list-group-item ">
+  		Valor Total:
+    <span class="badge badge-primary badge-pill">R$ {{$venda->valor}}</span>
+  </li>
 </ul>
 
-<div class="mt-2 p-2">
+<div class="mt-1 p-1">
 	<form method="post" action="{{route('vendas_item_add',['id' => $venda->id])}}">
 		@csrf
 		<select name="id_produto" class="form-control">
         @foreach ($produto as $p)
-        <option value="{{ $p->id}}">{{$p->nome}}</option>
+        <option value="{{ $p->id}}">{{$p->nome." ".$p->preco." ".$p->unidades->nome}}</option>
         @endforeach
         </select>
         <br>
@@ -37,12 +41,8 @@
 		<input type="submit" class="btn btn-success btn-lg btn-block" value="Cadastrar">
 		<br>
 	</form>
-
-	<h2> Valor Total: R$ {{$venda->valor}}</h2>
-	<div class="table-overflow">
-
 		
-		<table class="table table-bordered table-hover mt-2">
+		<table class="table table-bordered table-hover mt-1">
 			<thead class="thead-dark">
 				<tr>
 					<th>ID Item</th>
