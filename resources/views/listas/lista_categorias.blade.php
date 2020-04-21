@@ -28,7 +28,7 @@
 
 			<td>
 
-			 <a class="btn btn-warning" href="{{ route('produto_update', [ 'id' => $c->id ])}}"> 
+			 <a class="btn btn-warning" href="{{ route('categoria_update', [ 'id' => $c->id ])}}"> 
 			 Alterar
 			 <i class="icon-arrows-cw"></i>
 			 </a>
@@ -49,7 +49,7 @@
 
 <div class= "row">
 	<div class="navbar-expand-lg navbar navbar-dark bg-dark w-100">
-		<a class="btn btn-primary m-2 p-2" href="{{ route('produto_cadastro') }}">
+		<a class="btn btn-primary m-2 p-2" href="{{ route('categoria_cadastro') }}">
 		Adicionar Novo 
 		<i class="icon-plus"></i>
 		</a>
@@ -58,8 +58,8 @@
 
 <script>
 	function exclui(id){
-		if (confirm("Deseja excluir o produto de id: " + id + "?")){
-			location.href = "/produto/excluir/" + id;
+		if (confirm("Deseja excluir a categoria de id: " + id + "?")){
+			location.href = "/categoria/excluir/" + id;
 		}
 	}
 </script>

@@ -14,7 +14,7 @@ class VendaController extends Controller
 		if (session()->has("login")){
 			$cliente = Cliente::all();
 			$produto = Produto::all();
-			return view ("tela_vendas",["produto"=>$produto],["usuario"=>$cliente]);
+			return view ("tela_vendas",["pdr"=>$produto],["cli"=>$cliente]);
 		}
 			return view('tela_login');		
     }
@@ -59,11 +59,11 @@ class VendaController extends Controller
 			$produto = Produto::all();
 
 			if (count($cli->vendas) >0){
-				return view('lista_vendas',["produto"=>$produto],["cliente" => $cli]);
+				return view('lista_vendas',["pdr"=>$produto],["cli" => $cli]);
 			}else{
 				echo "<script>alert('Cliente $cli->nome nao possui vendas!!!');</script>";
 				$cli = Cliente::all();
-				return view("lista", [ "us" => $cli ]);
+				return view("lista", [ "cli" => $cli ]);
 			}
 			
 		}
@@ -84,7 +84,7 @@ class VendaController extends Controller
 	function listar(){
 		if (session()->has("login")){
 		$vendas = Venda::all();
-		return view('lista_vendas_geral',['vendas' => $vendas]);
+		return view('listas.lista_vendas_geral',['vnd' => $vendas]);
 		}
 		return view('tela_login');
 	}
@@ -92,16 +92,16 @@ class VendaController extends Controller
 	function itensVenda($id){
 		$venda = Venda::find($id);
 
-		return view('lista_itens_venda', ['venda' => $venda]);
+		return view('listas.lista_itens_venda', ['vnd' => $venda]);
 
 	}
 
 	function telaAdicionarItem($id){
-		$venda = Venda::find($id);
-		$produtos = Produto::all();
+		$vnd = Venda::find($id);
+		$pdr = Produto::all();
 		$itens = Itens::all();
 
-		return view('tela_cadastro_itens')->with(compact('venda','produtos','itens'));
+		return view('telas_cadastro.itens')->with(compact('vnd','pdr','itens'));
 		
 	}
 

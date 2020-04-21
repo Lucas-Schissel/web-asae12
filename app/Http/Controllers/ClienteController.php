@@ -11,13 +11,13 @@ class ClienteController extends Controller
         if (session()->has("login")){
             session()->forget("login");
         }
-    	return view("tela_cadastro_cliente");
+    	return view("telas_cadastro.tela_cadastro_cliente");
     }
 
     function telaAlteracao($id){
         if (session()->has("login")){
             $cli = Cliente::find($id);
-            return view("tela_alterar_cliente", [ "u" => $cli ]);
+            return view("telas_updates.tela_alterar_cliente", [ "cli" => $cli ]);
         }
         return view('tela_login');
     }

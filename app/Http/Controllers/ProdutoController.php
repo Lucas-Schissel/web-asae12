@@ -14,7 +14,7 @@ class ProdutoController extends Controller
             $categoria = Categoria::All();
             $unidade = Categoria::All();
 
-            return view('tela_cadastro_produto')->with(compact('categoria','unidade'));
+            return view('telas_cadastro.tela_cadastro_produto')->with(compact('categoria','unidade'));
         }
         return view('tela_login');
     }
@@ -22,7 +22,7 @@ class ProdutoController extends Controller
     function telaAlteracao($id){
         if (session()->has("login")){
             $pdr = Produto::find($id);
-            return view("tela_alterar_produto", [ "u" => $pdr ]);
+            return view("telas_updates.tela_alterar_produto", [ "pdr" => $pdr ]);
         }
         return view('tela_login');
     }
@@ -64,6 +64,16 @@ class ProdutoController extends Controller
         return ProdutoController::listar();
     }
 
+    function listar(){
+        if (session()->has("login")){
+            $pdr = Produto::all();
+            return view("lista_produtos", [ "pdr" => $pdr ]);
+            
+		}else{
+            return view('tela_login');
+        }
+    }
+
     function excluir($id){
         if (session()->has("login")){
             $pdr = Produto::find($id);
@@ -79,16 +89,6 @@ class ProdutoController extends Controller
         }
 
 
-    }
-
-    function listar(){
-        if (session()->has("login")){
-            $pdr = Produto::all();
-            return view("lista_produtos", [ "us" => $pdr ]);
-            
-		}else{
-            return view('tela_login');
-        }
     }
 
 }

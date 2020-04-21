@@ -24,25 +24,25 @@
 		</thead>
 		
 		<tbody>
-		@foreach ($us as $u)
+		@foreach ($cli as $c)
 		  <tr class="table-light">
-			<td>{{ $u->id }}</td>
-			<td>{{ $u->nome }}</td>
-			<td>{{ $u->login }}</td>
+			<td>{{ $c->id }}</td>
+			<td>{{ $c->nome }}</td>
+			<td>{{ $c->login }}</td>
 
 			<td>
 
-			 <a class="btn btn-warning" href="{{ route('usuario_update', [ 'id' => $u->id ])}}"> 
+			 <a class="btn btn-warning" href="{{ route('usuario_update', [ 'id' => $c->id ])}}"> 
 			 Alterar
 			 <i class="icon-arrows-cw"></i>
 			 </a>
 
-			 <a class="btn btn-danger" href="#" onclick="exclui({{ $u->id }})">
+			 <a class="btn btn-danger" href="#" onclick="exclui({{ $c->id }})">
 			 Excluir
 			 <i class="icon-trash-empty"></i>
 			 </a>
 
-			 <a class="btn btn-success" href="{{ route('vendas_cliente', [ 'id' => $u->id ])}}">
+			 <a class="btn btn-success" href="{{ route('vendas_cliente', [ 'id' => $c->id ])}}">
 			 Vendas
 			 <i class="icon-dollar"></i>
 			 </a>
