@@ -25,7 +25,7 @@
     <span class="badge badge-primary badge-pill">R$ {{$venda->valor}}</span>
   </li>
   <li class="list-group-item ">
- 	 <a class="btn btn-info" href="{{ route('venda_listar') }}" > Finalizar Venda</a>
+	  <a class="btn btn-info" href="" data-toggle="modal" data-target="#finalizar"> f</a>
   </li>
 </ul>
 
@@ -91,4 +91,22 @@ function exclui(id){
 	}
 </script>
 
+<!-- Modal -->
+<div class="modal fade" id="finalizar" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        </button>
+      </div>
+      <div class="modal-body">
+        Deseja Encerrar a Venda?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nao</button>
+		<a class="btn btn-info" href="/venda/validar/{{ $venda->id }}" >Sim</a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

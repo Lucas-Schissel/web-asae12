@@ -59,6 +59,9 @@ Route::get('/venda/{id}/itens', 'VendaController@itensVenda')
 Route::get('/venda/listar', 'VendaController@listar')
 	->name('venda_listar');
 
+Route::get('/venda/validar/{id}', 'VendaController@validar')
+	->name('venda_validar');
+
 Route::get('/venda/cadastrar', 'VendaController@telaCadastro')
 	->name('venda_cadastro');
 

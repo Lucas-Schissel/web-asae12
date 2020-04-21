@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Cliente;
 
@@ -38,7 +39,7 @@ class AppController extends Controller
 
     	if ($cli and $cli->senha == $senha){
 
-			$variaveis = ["login" => $login];
+			$variaveis = ["login" => $login,"nome" => $cli->nome];
 			session($variaveis);
 
     		return redirect()->route('menu');
@@ -49,7 +50,7 @@ class AppController extends Controller
 	}
 
 	function logout(){
-		session()->forget("login");
+		session()->forget('login');
 		return redirect()->route('tela_login');
 	}
 

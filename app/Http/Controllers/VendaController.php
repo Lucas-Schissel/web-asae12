@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Venda;
 use App\Cliente;
 use App\Produto;
-use App\Itens;
 
 class VendaController extends Controller
 {
@@ -23,9 +22,8 @@ class VendaController extends Controller
 	function telaAdicionarItem($id){
 		$venda = Venda::find($id);
 		$produto = Produto::all();
-		$itens = Itens::all();
 
-		return view('telas_cadastro.cadastro_itens')->with(compact('venda','produto','itens'));
+		return view('telas_cadastro.cadastro_itens')->with(compact('venda','produto'));
 		
 	}
 	
@@ -101,7 +99,6 @@ class VendaController extends Controller
 
 	function itensVenda($id){
 		$venda = Venda::find($id);
-
 		return view('listas.lista_itens_venda', ['venda' => $venda]);
 
 	}
@@ -136,6 +133,19 @@ class VendaController extends Controller
 
 		return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
 
+	}
+
+	function validar($id){
+		if (session()->has("login")){
+			$venda = Venda::find($id);
+			if(($venda->valor)>0){
+				return	VendaController::listar();
+			}else{
+				echo "Nao pode adicionar venda sem itens!"; 
+				return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
+			}
+		}
+		return view('tela_login');
 	}
 
 }
