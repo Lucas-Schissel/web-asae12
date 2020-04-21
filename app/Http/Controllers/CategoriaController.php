@@ -9,7 +9,7 @@ class CategoriaController extends Controller
 {
     function telaCadastro(){
         if (session()->has("login")){
-            return view('telas_cadastro.cadastro_categoria');
+            return view('telas_cadastro.cadastro_categorias');
         }
             return view('tela_login');
     }

@@ -14,7 +14,7 @@ class ProdutoController extends Controller
             $categoria = Categoria::All();
             $unidade = Categoria::All();
 
-            return view('telas_cadastro.cadastro_produto')->with(compact('categoria','unidade'));
+            return view('telas_cadastro.cadastro_produtos')->with(compact('categoria','unidade'));
         }
         return view('tela_login');
     }

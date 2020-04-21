@@ -10,8 +10,8 @@
 <div class="mt-2 p-2">
 	<form method="post" action="{{ route('unidade_add') }}">
 		@csrf
-		<h4>Digite um nome:</h4>
-			<input type="text" class="form-control" name="nome" placeholder="Nome">
+		<h4>Nome:</h4>
+			<input type="text" class="form-control" name="nome" placeholder="Digite um nome">
 		<br>
 			<input type="submit"  class="btn btn-success btn-lg btn-block" value="Confirmar">
 	</form>

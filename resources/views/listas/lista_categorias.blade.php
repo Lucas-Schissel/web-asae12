@@ -49,9 +49,13 @@
 
 <div class= "row">
 	<div class="navbar-expand-lg navbar navbar-dark bg-dark w-100">
-		<a class="btn btn-primary m-2 p-2" href="{{ route('categoria_cadastro') }}">
-		Adicionar Novo 
-		<i class="icon-plus"></i>
+		<a class="btn btn-secondary m-2 p-2" type="button2" href="{{ route('menu') }}">
+			<i class="icon-left-circled"></i>
+			Voltar		
+		</a>
+		<a class="btn btn-secondary m-2 p-2" type="button2" href="{{ route('categoria_cadastro') }}">
+			<i class="icon-plus-circled"></i>
+			Nova			
 		</a>
 	</div>
 </div>

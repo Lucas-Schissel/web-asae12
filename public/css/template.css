@@ -5,6 +5,13 @@
     border:1px solid #FFFFFF; 
 }
 
+.btn[type=button2]{
+    margin-bottom: 5px;
+    margin: 5px;
+    width: 100px;   
+    border:1px solid #FFFFFF; 
+}
+
 .dropdown-item{
     background: #5A6268;
     color: #fff;

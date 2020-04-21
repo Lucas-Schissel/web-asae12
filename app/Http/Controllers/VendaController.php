@@ -55,15 +55,15 @@ class VendaController extends Controller
 
     function vendasPorCliente($id){
 		if (session()->has("login")){
-			$cli = Cliente::find($id);
+			$cliente= Cliente::find($id);
 			$produto = Produto::all();
 
-			if (count($cli->vendas) >0){
-				return view('lista_vendas',["pdr"=>$produto],["cli" => $cli]);
+			if (count($cliente->vendas) >0){
+				return view('listas.lista_vendas',["pdr"=>$produto],["cli" => $cliente]);
 			}else{
-				echo "<script>alert('Cliente $cli->nome nao possui vendas!!!');</script>";
-				$cli = Cliente::all();
-				return view("lista", [ "cli" => $cli ]);
+				echo "<script>alert('Cliente $cliente->nome nao possui vendas!!!');</script>";
+				$cliente = Cliente::all();
+				return view("listas.lista_clientes", [ "cli" => $cliente ]);
 			}
 			
 		}
