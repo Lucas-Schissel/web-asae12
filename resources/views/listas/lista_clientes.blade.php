@@ -7,6 +7,25 @@
 	</span>
 </div>
 
+<div class="row bg-dark text-white border border-white rounded ">
+			<div class = "col-md-3 col-sm-6 col-6">
+				Cliente:
+				<span class="badge badge-primary badge-pill">{{count($cli)}}</span>		
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Nº_Venda :
+				<span class="badge badge-primary badge-pill"></span>		
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Nº_Items:
+				<span class="badge badge-primary badge-pill"></span>	
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Valor Total:
+				<span class="badge badge-primary badge-pill"></span>	
+			</div>				
+</div>
+
 <div class="table-overflow">
 
 	<table id="tablesorter-imasters" class="table table-bordered table-hover mt-2">

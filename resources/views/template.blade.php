@@ -38,13 +38,7 @@
 								<a class= "dropdown-item" href="{{route('logout')}}"> 
 								<i class="icon-logout"></i>
 								Logout								
-								</a>
-								<div class= "dropdown-divider"></div>
-								<a class= "dropdown-item" href="{{route('config')}}"> 
-								<i class="icon-cog-alt"></i>
-								Configuraçoes								
-								</a>
-								
+								</a>								
 							</div>
 
 					 </div>
