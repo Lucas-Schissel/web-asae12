@@ -7,30 +7,30 @@
 	</span>
 </div>
 
-<div class="table-overflow">
+	
+	<table class="table table-bordered table-hover mt-1">
 
-	<table class="table table-bordered table-hover mt-2">
 		<thead class="thead-dark">
 			<tr>
-				<th>ID</th>
-				<th>Nome</th>
-				<th>Operações</th>
+				<th id="celula1">ID</th>
+				<th >Nome</th>
+				<th >Operações</th>
 			</tr>
 		</thead>
-		
+					
 		<tbody>
 		@foreach ($und as $u)
-		  <tr class="table-light">
-			<td>{{ $u->id }}</td>
-			<td>{{ $u->nome }}</td>
+		  <tr class="table-light" >
+			<td id="celula1">{{  $u->id }}</td>
+			<td>{{ 	$u->nome }}</td>
 			<td>
 
-			 <a class="btn btn-warning" href="{{ route('unidade_update', [ 'id' => $u->id ])}}"> 
+			 <a class="btn btn-warning mt-1" href="{{ route('unidade_update', [ 'id' => $u->id ])}}"> 
 			 Alterar
 			 <i class="icon-arrows-cw"></i>
 			 </a>
 
-			 <a class="btn btn-danger" href="#" onclick="exclui({{ $u->id }})">
+			 <a class="btn btn-danger mt-1" href="#" onclick="exclui({{ $u->id }})">
 			 Excluir
 			 <i class="icon-trash-empty"></i>
 			 </a>
@@ -42,15 +42,15 @@
 		</tbody>
 	</table>
 
-</div>
+
 
 <div class= "row">
 	<div class="navbar-expand-lg navbar navbar-dark bg-dark w-100">
-		<a class="btn btn-secondary m-2 p-2" type="button2" href="{{ route('menu') }}">
+		<a class="btn btn-secondary m-1 p-1" type="button2" href="{{ route('menu') }}">
 			<i class="icon-left-circled"></i>
 			Voltar		
 		</a>
-		<a class="btn btn-secondary m-2 p-2" type="button2" href="{{ route('unidade_cadastro') }}">
+		<a class="btn btn-secondary m-1 p-1" type="button2" href="{{ route('unidade_cadastro') }}">
 			<i class="icon-plus-circled"></i>
 			Novo			
 		</a>

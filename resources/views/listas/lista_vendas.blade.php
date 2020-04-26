@@ -4,7 +4,7 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>ID</th>
+			<th id="celula1">ID</th>
 			<th>Nome</th>
 			<th>Valor</th>
 		</tr>
@@ -12,7 +12,7 @@
 	<tbody>
 		@foreach ($us as $u)
 		<tr>
-			<td>{{ $u->id }}</td>
+			<td id="celula1">{{ $u->id }}</td>
 			<td>{{ $u->id_usuario }}</td>
 			<td>{{ $u->valor }}</td>
 			<td>

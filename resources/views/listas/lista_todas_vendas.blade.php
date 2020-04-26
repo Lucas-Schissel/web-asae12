@@ -10,8 +10,8 @@
         <table class="table table-bordered table-hover mt-2">
             <thead class="thead-dark">
                 <tr>
-                    <th>ID:</th>
-                    <th>Valor Total:</th>
+                    <th id="celula1">ID:</th>
+                    <th id="celula2">Valor Total:</th>
                     <th>Cliente:</th>
                     <th>Operaçoes:</th>
                 </tr>
@@ -19,8 +19,8 @@
             <tbody>
                 @foreach($vendas as $v)
                 <tr>
-                    <td>{{$v->id}}</td>
-                    <td>R$: {{$v->valor}}</td>
+                    <td id="celula1">{{$v->id}}</td>
+                    <td id="celula2">R$: {{$v->valor}}</td>
                     <td>{{$v->usuario->nome }}</td>    
                     <td>
                         <a class="btn btn-warning" href="{{ route('vendas_itens', [ 'id' => $v->id ])}}"> 

@@ -156,7 +156,7 @@
 			<div class = "col-md-2">
 				<!-- coluna vazia esquerda -->
 			</div>
-			<div id="conteudo" class = "col-md-8 mt-1">
+			<div id="conteudo" class = "col-md-8 mt-2">
 				@yield('conteudo')
 			</div>
 			<div class = "col-md-2">

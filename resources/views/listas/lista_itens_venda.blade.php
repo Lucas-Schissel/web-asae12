@@ -8,24 +8,22 @@
         <table class="table table-bordered table-hover mt-2">
             <thead class="thead-dark">
                 <tr>
-                    <th>ID Item</th>
+                    <th id="celula1">ID</th>
                     <th>Nome</th>
                     <th>Quantidade</th>
                     <th>Valor Und</th>
                     <th>Subtotal</th>
-                    <th>Data</th>
                     <th>Açoes</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($venda->produtos as $v)
                 <tr>
-                    <td>{{$v->pivot->id}}</td>
+                    <td id="celula1">{{$v->pivot->id}}</td>
                     <td>{{$v->nome}}</td>
                     <td>{{$v->pivot->quantidade}}</td>
                     <td>R$ {{$v->preco}}</td>
                     <td>R$ {{$v->pivot->subtotal}}</td>
-                    <td>{{$v->pivot->create_at}}</td>
                     <td>
                         <a class="btn btn-danger" href="#" onclick="exclui({{ $v->pivot->id }})">
                         Excluir

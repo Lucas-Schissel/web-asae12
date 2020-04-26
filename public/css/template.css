@@ -26,9 +26,41 @@
    
 }
 
-.table-overflow{
-    max-height:400px;
-    overflow-y:auto;
+tr {
+    width: 100%;
+    display: inline-table;
+    table-layout: fixed;
+    }
+    
+table{
+     height:420px;                 
+    }
+
+tbody{
+      overflow-y: scroll;      
+      height: 370px;          
+      width: 98.2%;
+      position: absolute;     
+    }
+
+#celula1{
+    width: 50px;
+}
+
+#celula2{
+    width: 140px;
+}
+
+#celula3{
+    width: 140px;
+}
+
+#celula4{
+    width: 100px;
+}
+
+#celula5{
+    width: 50px;
 }
 
 .config{
