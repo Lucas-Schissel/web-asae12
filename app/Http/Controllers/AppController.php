@@ -5,9 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Cliente;
+use App\Produto;
+use App\Venda;
+
 
 class AppController extends Controller
+
 {
+	function dashboard(){
+		if (session()->has("login")){			
+			$cli = Cliente::All();
+			$clientes = count($cli);
+			$pdr = Produto::All();
+			$produtos = count($pdr);
+			$vnd = Venda::All();
+			$vendas = count($vnd);
+			$dinheiros = collect($vnd)->sum('valor');
+			return view("modal.dashboard")->with(compact('clientes','produtos','vendas','dinheiros'));
+		}
+		return view('tela_login');
+	}
+
 	function menu(){
 		if (session()->has("login")){			
 		return view("resultado", ["mensagem" => "Bem Vindo"]);

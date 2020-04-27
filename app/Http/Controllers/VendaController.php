@@ -30,17 +30,17 @@ class VendaController extends Controller
     function adicionar(Request $req){
 		$id_usuario = $req->input('id_usuario');
     	
-		$cli = new Venda();
-    	$cli->id_usuario = $id_usuario;
-    	$cli->valor = 0;
+		$vnd = new Venda();
+    	$vnd->id_usuario = $id_usuario;
+    	$vnd->valor = 0;
     	
 
-    	if ($cli->save()){
+    	if ($vnd->save()){
 			echo  "<script>alert('Venda efetuada com Sucesso!');</script>";
     	} else {
     		echo  "<script>alert('Venda nao efetuada!');</script>";
 		}
-		return redirect()->route('vendas_item_novo', ['id' => $cli->id]);
+		return redirect()->route('vendas_item_novo', ['id' => $vnd->id]);
 	}
 	
 	function excluir($id){

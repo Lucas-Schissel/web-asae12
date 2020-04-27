@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //Clientes
 
 Route::get('/usuario/cadastro', 'ClienteController@telaCadastro')
@@ -40,8 +36,8 @@ Route::get('/logout', 'AppController@logout')
 Route::get('/menu', 'AppController@menu')
 	->name('menu');
 
-	Route::get('/config', 'AppController@config')
-	->name('config');
+Route::get('/dashboard', 'AppController@dashboard')
+	->name('dashboard');
 
 //Vendas
 Route::get('/venda/{id}/itens/remover/{id_pivot}', 'VendaController@excluirItem')

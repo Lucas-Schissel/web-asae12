@@ -123,23 +123,35 @@
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 								<a class= "dropdown-item" href="{{route('vendas_total')}}">
 								<i class="icon-th-list"></i>
-								Listar
+								Listar Todas
 								</a>
 							<div class= "dropdown-divider"></div>	
 								<a class="dropdown-item" href="{{route('venda_cadastro')}}">
 								<i class="icon-cart-plus"></i>
 								Vender
 								</a>
-							<div class= "dropdown-divider"></div>	
-								<a class="dropdown-item" href="{{route('venda_listar')}}">
-								<i class="icon-cart-plus"></i>
-								Lista Tudo
-								</a>
-							</div>
+														
+					 </div>
+					</li>
+					
+					<li class ="nav-item">
+					 <div class="dropdown">
 
+							<button class="btn btn-secondary" type="button" data-toggle="dropdown">
+								Dashboard
+								<i class="icon-database"></i>
+							</button>
+
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class= "dropdown-item view_data" href="{{route('dashboard')}}">
+								<i class="icon-chart-line"></i>
+								Indicadores
+								</a>
+							
 							
 					 </div>
-					</li>			
+					</li>
+
 					
 					</ul>
 				</div>
