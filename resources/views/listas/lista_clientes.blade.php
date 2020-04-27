@@ -1,5 +1,6 @@
 @extends('template')
 @section('conteudo')
+@if (count($cli) >0)   
 
 <div class= "row">
 	<span class="d-block p-2 bg-dark text-center text-white w-100">
@@ -33,7 +34,7 @@
 			 <i class="icon-arrows-cw"></i>
 			 </a>
 
-			 <a class="btn btn-danger mt-1" href="#" onclick="exclui({{ $c->id }})">
+			 <a class="btn btn-danger m-1" href="" data-toggle="modal" data-target="#excluir">
 			 Excluir
 			 <i class="icon-trash-empty"></i>
 			 </a>
@@ -64,20 +65,28 @@
 	</div>
 </div>
 
-<script>
-	function exclui(id){
-		if (confirm("Deseja excluir o usuário de id: " + id + "?")){
-			location.href = "/usuario/excluir/" + id;
-		}
-	}
-</script>
+<div class="modal fade" id="excluir" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        </button>
+      </div>
+      <div class="modal-body">
+        Deseja excluir o usuario? Essa operaçao vai excluir todas as vendas associadas!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#finalizar">Nao</button>
+		<a class="btn btn-info" href="/usuario/excluir/{{ $c->id }}" >Sim</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-<script type="text/javascript">
-$(function() {	
-            //aqui podem ter todas as outras instruções JQuery do site, sem perda
-	$("#tablesorter-imasters").tablesorter();
-            //aqui podem ter mais instruções JQuery, não importa a ordem
-});	
-</script>
+@else
+    <div class="alert alert-danger m-2">
+        <h3> Nao Existe Clientes Cadastrados </h3>
+    </div>
+@endif
 
 @endsection

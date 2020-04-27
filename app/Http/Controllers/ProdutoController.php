@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Produto;
 use App\Categoria;
 use App\Unidade;
+use App\Venda;
 
 class ProdutoController extends Controller
 {
@@ -78,10 +80,18 @@ class ProdutoController extends Controller
         if (session()->has("login")){
             $pdr = Produto::find($id);
 
-            if ($pdr->delete()){
-                echo  "<script>alert('Produto $id excluído com sucesso');</script>";
-            } else {
-                echo  "<script>alert('Produto $id nao foi excluído!!!');</script>";
+            $var = DB::table('produtos_venda')->where('id_produto','=',$id)->first();
+
+            if($var){
+                echo  "<script>alert('O produto nao pode ser excluido pois existem vendas associadas');</script>"; 
+            }else{
+
+                if ($pdr->delete()){
+                    echo  "<script>alert('Produto $id excluído com sucesso');</script>";
+                } else {
+                    echo  "<script>alert('Produto $id nao foi excluído!!!');</script>";
+                }
+
             }
             return ProdutoController::listar();
         }else{

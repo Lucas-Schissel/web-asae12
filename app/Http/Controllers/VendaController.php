@@ -47,16 +47,14 @@ class VendaController extends Controller
 		if (session()->has("login")){
 			$vnd = Venda::find($id);
 
-			(VendaController::exclui_todos_itens($vnd));		
+			VendaController::exclui_todos_itens($vnd);		
 
 				if ($vnd->delete()){
 					echo  "<script>alert('Venda $id excluída com sucesso');</script>";
 				} else {
 					echo  "<script>alert('Venda $id nao foi excluída!!!');</script>";
-				}	
-							
+				}								
 			return 	VendaController::todasVendas($id);
-
 		}else{
             return view('tela_login');
         }
@@ -69,7 +67,6 @@ class VendaController extends Controller
 			$vendas = Venda::all()->where('id_usuario',$id);
 			$total = collect($vendas)->sum('valor');
 
-
 			if (count($cliente->vendas) >0){
 				return view('listas.lista_vendas')->with(compact('total','cliente','vendas'));
 
@@ -77,10 +74,8 @@ class VendaController extends Controller
 				echo "<script>alert('Cliente $cliente->nome nao possui vendas!!!');</script>";
 				$cliente = Cliente::all();
 				return view("listas.lista_clientes", [ "cli" => $cliente ]);
-			}
-			
+			}			
 		}
-
 		return view('tela_login');
 	}
 

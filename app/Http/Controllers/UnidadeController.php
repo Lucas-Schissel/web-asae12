@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Unidade;
 
@@ -66,11 +67,20 @@ class UnidadeController extends Controller
         if (session()->has("login")){
             $unidade = Unidade::find($id);
 
-            if ($unidade->delete()){
-                echo  "<script>alert('Unidade $id excluída com sucesso');</script>";
-            } else {
-                echo  "<script>alert('Undade $id nao foi excluída!!!');</script>";
+            $var = DB::table('produtos')->where('id_unidade','=',$id)->first();
+
+            if($var){
+                echo  "<script>alert('A unidade nao pode ser excluida pois existem produtos associados');</script>"; 
+            }else{
+
+                if ($unidade->delete()){
+                    echo  "<script>alert('Unidade $id excluída com sucesso');</script>";
+                } else {
+                    echo  "<script>alert('Undade $id nao foi excluída!!!');</script>";
+                }
+
             }
+
             return UnidadeController::listar();
         }else{
             return view('tela_login');

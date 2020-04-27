@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Cliente;
+use App\Venda;
 
 class ClienteController extends Controller
 {   
@@ -84,14 +85,19 @@ class ClienteController extends Controller
     }
 
     function excluir($id){
-        if (session()->has("login")){
-                $cli = Cliente::find($id);
-                if ($cli->delete()){
-                    echo  "<script>alert('Cliente $id excluído com sucesso');</script>";
-                } else {
-                    echo  "<script>alert('Cliente $id nao foi excluído!!!');</script>";
-                }
+        if (session()->has("login")){        
+                $vendas = Venda::all()->where('id_usuario','=',$id);
 
+                if(count($vendas) > 0){
+                    echo  "<script>alert('O cliente nao pode ser excluido pois existem vendas associadas');</script>";
+                }else{
+                    $cli = Cliente::find($id);
+                    if ($cli->delete()){
+                        echo  "<script>alert('Cliente $id excluído com sucesso');</script>";
+                    } else {
+                        echo  "<script>alert('Cliente $id nao foi excluído!!!');</script>";
+                    }
+                }
                 return  ClienteController::listar();
         }else{
         return view('tela_login');

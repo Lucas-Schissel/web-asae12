@@ -54,7 +54,32 @@
 	</tbody>
 </table>
 
-<a class="btn btn-primary" href="{{ route('venda_cadastro') }}">Nova Venda</a>
+<div class= "row">
+	<div class="navbar-expand-lg navbar navbar-dark bg-dark w-100">
+		<a class="btn btn-secondary m-1 p-1" type="button2" href="{{ route('usuario_listar') }}">
+			<i class="icon-left-circled"></i>
+			Voltar		
+		</a>
+	</div>
+</div>
+
+<div class="modal fade" id="excluir" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        </button>
+      </div>
+      <div class="modal-body">
+        Deseja Excluir a Venda?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#finalizar">Nao</button>
+		<a class="btn btn-info" href="/venda/excluir/{{ $v->id }}" >Sim</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 	function exclui(id){

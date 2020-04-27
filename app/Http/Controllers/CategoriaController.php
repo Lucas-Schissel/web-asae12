@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Categoria;
 
@@ -70,11 +71,20 @@ class CategoriaController extends Controller
         if (session()->has("login")){
             $ctg = Categoria::find($id);
 
-            if ($ctg->delete()){
-                echo  "<script>alert('Categoria $id excluída com sucesso');</script>";
-            } else {
-                echo  "<script>alert('Categoria $id nao foi excluída!!!');</script>";
+            $var = DB::table('produtos')->where('id_categoria','=',$id)->first();
+
+            if($var){
+                echo  "<script>alert('A categoria nao pode ser excluida pois existem produtos associados');</script>"; 
+            }else{
+
+                if ($ctg->delete()){
+                    echo  "<script>alert('Categoria $id excluída com sucesso');</script>";
+                } else {
+                    echo  "<script>alert('Categoria $id nao foi excluída!!!');</script>";
+                }
+
             }
+
             return CategoriaController::listar();
         }else{
             return view('tela_login');
