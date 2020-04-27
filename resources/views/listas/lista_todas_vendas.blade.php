@@ -1,11 +1,13 @@
 @extends('template')
 @section('conteudo')
 
-<h2>Todas as Vendas Efetuadas:</h2>
+<div class= "row">
+		<span class="d-block bg-dark text-center text-white w-100">
+      <h2>Todas as Vendas:</h2>
+		</span>
+</div>
 
-@if (count($vendas) >0)
-
-    
+@if (count($vendas) >0)    
 
         <table class="table table-bordered table-hover mt-2">
             <thead class="thead-dark">
@@ -25,17 +27,17 @@
                     <td id="celula4">R$: {{$v->valor}}</td>
                     <td id="celula2">{{$v->usuario->nome }}</td>    
                     <td>
-                        <a class="btn btn-warning" href="{{ route('vendas_itens', [ 'id' => $v->id ])}}"> 
-			                Alterar
-			                <i class="icon-arrows-cw"></i>
-                         </a>
-                         <a class="btn btn-info" href="{{ route('vendas_itens', [ 'id' => $v->id ])}}"> 
-			                Itens
-                            <i class="icon-table"></i>   
-                         </a>
-                         <a class="btn btn-danger" href="" data-toggle="modal" data-target="#excluir"> 
-                            Excluir
-                            <i class="icon-trash-empty"></i>
+                        <a class="btn btn-warning m-1" href="{{ route('vendas_itens', [ 'id' => $v->id ])}}"> 
+			                    Alterar
+                          <i class="icon-arrows-cw"></i>
+                        </a>
+                        <a class="btn btn-info m-1" href="{{ route('vendas_itens', [ 'id' => $v->id ])}}"> 
+			                     Itens
+                           <i class="icon-table"></i>   
+                        </a>
+                        <a class="btn btn-danger m-1" href="" data-toggle="modal" data-target="#excluir"> 
+                          Excluir
+                          <i class="icon-trash-empty"></i>
                         </a>
                     </td>  
                 </tr>

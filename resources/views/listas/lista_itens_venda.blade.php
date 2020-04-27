@@ -1,7 +1,24 @@
 @extends('template')
 @section('conteudo')
 
-<h2>Itens da Vendas {{ $venda->id }}</h2>
+<div class="row bg-dark text-white border border-white rounded ">
+			<div class = "col-md-3 col-sm-6 col-6">
+				Cliente:
+				<span class="badge badge-primary badge-pill">{{ $venda->usuario->nome}}</span>		
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Nº_Venda :
+				<span class="badge badge-primary badge-pill">{{ $venda->id }}</span>		
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Nº_Items:
+				<span class="badge badge-primary badge-pill">{{count($venda->produtos)}}</span>	
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Valor Total:
+				<span class="badge badge-primary badge-pill">R$ {{$venda->valor}}</span>	
+			</div>				
+	</div>
 
     <div class="table-overflow">
 

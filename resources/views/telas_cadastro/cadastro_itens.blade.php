@@ -52,7 +52,7 @@
 			<label class="input-group-text bg-dark text-center text-white" for="inputGroupSelect01">Quantidade:</label>
 		</div>
 		<div class="input-group-prepend">
-			<a class= "btn btn-danger m-1" href="#" onclick="rta()">
+			<a class= "btn btn-danger" href="#" onclick="rta()">
 				<i class="icon-minus-circled"></i>
 			</a>
 		</div>
@@ -60,7 +60,7 @@
 				<input type="number" name="quantidade" value="1" min="1" >
 		</div>
 		<div class="input-group-prepend">
-				<a class= "btn btn-success m-1" href="#" onclick="add()">
+				<a class= "btn btn-success" href="#" onclick="add()">
 					<i class="icon-plus-circled"></i>
 				</a>		
 		</div>

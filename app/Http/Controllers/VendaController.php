@@ -66,10 +66,13 @@ class VendaController extends Controller
     function vendasPorCliente($id){
 		if (session()->has("login")){
 			$cliente= Cliente::find($id);
-			$produto = Produto::all();
+			$vendas = Venda::all()->where('id_usuario',$id);
+			$total = collect($vendas)->sum('valor');
+
 
 			if (count($cliente->vendas) >0){
-				return view('listas.lista_vendas',["pdr"=>$produto],["cli" => $cliente]);
+				return view('listas.lista_vendas')->with(compact('total','cliente','vendas'));
+
 			}else{
 				echo "<script>alert('Cliente $cliente->nome nao possui vendas!!!');</script>";
 				$cliente = Cliente::all();
@@ -141,7 +144,7 @@ class VendaController extends Controller
 		if (session()->has("login")){
 			$venda = Venda::find($id);
 			if(($venda->valor)>0){
-				return	VendaController::listar();
+				return	VendaController::todasVendas();
 			}else{
 				echo "Nao pode adicionar venda sem itens!"; 
 				return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
