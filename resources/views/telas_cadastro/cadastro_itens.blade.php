@@ -1,94 +1,142 @@
 @extends('template')
 @section('conteudo')
 
-<div class= "row">
-	<span class="d-block p-2 bg-dark text-center text-white w-100">
-		<h2>Cadastro de Itens</h2>
-	</span>
-</div>
+	<div class= "row">
+		<span class="d-block bg-dark text-center text-white w-100">
+			<h2>Cadastro de Itens</h2>
+		</span>
+	</div>	
 
-<ul class="list-group list-group-horizontal-sm m-2">
-  <li class="list-group-item ">
-     	Cliente:
-    <span class="badge badge-primary badge-pill">{{ $venda->usuario->nome}}</span>
-  </li>
-  <li class="list-group-item ">
-     	Nº Venda:
-    <span class="badge badge-primary badge-pill">{{ $venda->id }}</span>
-  </li>
-  <li class="list-group-item ">
-  		Nº Itens:
-    <span class="badge badge-primary badge-pill">{{count($venda->produtos)}}</span>
-  </li>
-  <li class="list-group-item ">
-  		Valor Total:
-    <span class="badge badge-primary badge-pill">R$ {{$venda->valor}}</span>
-  </li>
-  <li class="list-group-item ">
-	  <a class="btn btn-info" href="" data-toggle="modal" data-target="#finalizar"> f</a>
-  </li>
-</ul>
+	<div class="row bg-dark text-white border border-white rounded ">
+			<div class = "col-md-3 col-sm-6 col-6">
+				Cliente:
+				<span class="badge badge-primary badge-pill">{{ $venda->usuario->nome}}</span>		
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Nº_Venda :
+				<span class="badge badge-primary badge-pill">{{ $venda->id }}</span>		
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Nº_Items:
+				<span class="badge badge-primary badge-pill">{{count($venda->produtos)}}</span>	
+			</div>
+			<div class = "col-md-3 col-sm-6 col-6">
+				Valor Total:
+				<span class="badge badge-primary badge-pill">R$ {{$venda->valor}}</span>	
+			</div>				
+	</div>
 
+	<div class= "row">
+		<span class="d-block bg-dark text-center text-white w-100">.</span>
+	</div>
 
-<div class="mt-1 p-1">
 	<form method="post" action="{{route('vendas_item_add',['id' => $venda->id])}}">
-		@csrf
-		<select name="id_produto" class="form-control">
-        @foreach ($produto as $p)
-        <option value="{{ $p->id}}">{{$p->nome." ".$p->preco." ".$p->unidades->nome}}</option>
-        @endforeach
-        </select>
-        <br>
-		<input type="number" name="quantidade" class="form-control" 
-		min="1" max="10" step="0.01">
-		<br>
-		<input type="submit" class="btn btn-success btn-lg btn-block" value="Cadastrar">
-		<br>
-	</form>
+	@csrf
+	<div class="row">		
+	<div class="input-group">
+	<div class="input-group-prepend">
+    <label class="input-group-text bg-dark text-center text-white" for="inputGroupSelect01">Produto:</label>
+  	</div>
+
+			<select class="custom-select" name="id_produto">
+			@foreach ($produto as $p)
+			<option value="{{ $p->id}}">{{$p->nome." ".$p->preco." ".$p->unidades->nome}}</option>
+			@endforeach
+			</select>
+	</div>			
+	</div>
+
+	<div class="row">		
+	<div class="input-group">
+		<div class="input-group-prepend" >
+			<label class="input-group-text bg-dark text-center text-white" for="inputGroupSelect01">Quantidade:</label>
+		</div>
+		<div class="input-group-prepend">
+			<a class= "btn btn-danger m-1" href="#" onclick="rta()">
+				<i class="icon-minus-circled"></i>
+			</a>
+		</div>
+		<div class="input-group-prepend">		
+				<input type="number" name="quantidade" value="1" min="1" >
+		</div>
+		<div class="input-group-prepend">
+				<a class= "btn btn-success m-1" href="#" onclick="add()">
+					<i class="icon-plus-circled"></i>
+				</a>		
+		</div>
 		
-		<table class="table table-bordered table-hover mt-1">
-			<thead class="thead-dark">
-				<tr>
-					<th>ID Item</th>
-					<th>Nome</th>
-					<th>Quantidade</th>
-					<th>Valor Und</th>
-					<th>Subtotal</th>
-					<th>Data</th>
-					<th>Açoes</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($venda->produtos as $p)
-				
-				<tr>
-					<td>{{$p->pivot->id}}</td>
-					<td>{{$p->nome}}</td>
-					<td>{{$p->pivot->quantidade}}</td>
-					<td>R$ {{$p->preco}}</td>
-					<td>R$ {{$p->pivot->subtotal}}</td>
-					<td>{{$p->pivot->create_at}}</td>
-					<td>
-						<a class="btn btn-danger" href="#" onclick="exclui({{$p->pivot->id}})">
-						<i class="icon-trash-empty"></i>
-						</a>
-					</td>
-				</tr>
-				@endforeach				
-			</tbody>
-		</table>
+	</div>		
+	</div>
+
+	<div class="row">	
+
+			
+			<input type="submit" class="btn btn-success btn-lg btn-block" value="Cadastrar">
+		
 
 	</div>
-	
-	
-</div>
+
+
+	</form>
+
+
+	<div class="row">
+			<table class="table table-bordered table-hover mt-1">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID Item</th>
+						<th>Nome</th>
+						<th>Quantidade</th>
+						<th>Valor Und</th>
+						<th>Subtotal</th>
+						<th>Açoes</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($venda->produtos as $p)
+					
+					<tr>
+						<td>{{$p->pivot->id}}</td>
+						<td>{{$p->nome}}</td>
+						<td>{{$p->pivot->quantidade}}</td>
+						<td>R$ {{$p->preco}}</td>
+						<td>R$ {{$p->pivot->subtotal}}</td>
+						<td>
+							<a class="btn btn-danger" href="#" onclick="exclui({{$p->pivot->id}})">
+							<i class="icon-trash-empty"></i>
+							</a>
+						</td>
+					</tr>
+					@endforeach				
+				</tbody>
+			</table>		
+	</div>
+
+	<a class="btn btn-info" href="" data-toggle="modal" data-target="#finalizar">Finalizar</a>
 
 <script>
-function exclui(id){
-		if (confirm("Deseja excluir o item de id: " + id + "?")){
-			location.href = "/venda/{{ $venda->id }}/itens/remover/" + id;
+	function excluir(id){
+		if (confirm("Deseja excluir a categoria de id: " + id + "?")){
+			location.href = "/categoria/excluir/" + id;
 		}
 	}
+</script>
+<script>
+	function rta(){
+		if(document.querySelector("[name='quantidade']").value>1){
+			document.querySelector("[name='quantidade']").value =	
+			parseInt(document.querySelector("[name='quantidade']").value)-1;
+		}
+	}
+</script>
+<script>
+	function add(){	
+		if(document.querySelector("[name='quantidade']").value>=0){
+			document.querySelector("[name='quantidade']").value =	
+			parseInt(document.querySelector("[name='quantidade']").value) +1;
+		}
+	}
+
 </script>
 
 <!-- Modal -->

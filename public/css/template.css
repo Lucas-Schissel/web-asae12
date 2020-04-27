@@ -26,21 +26,26 @@
    
 }
 
-tr {
+tr{
     width: 100%;
     display: inline-table;
     table-layout: fixed;
     }
+
+td{
+    vertical-align: middle;
+}
     
 table{
-     height:420px;                 
+     height:420px;               
     }
 
 tbody{
       overflow-y: scroll;      
       height: 370px;          
       width: 98.2%;
-      position: absolute;     
+      position: absolute; 
+      text-align:center;
     }
 
 #celula1{
@@ -63,6 +68,9 @@ tbody{
     width: 50px;
 }
 
+.btn{
+    width: 108px;
+}
 .config{
     background-color: #5A6268;
     height: 80vh;

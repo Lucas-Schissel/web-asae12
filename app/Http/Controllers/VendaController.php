@@ -41,19 +41,21 @@ class VendaController extends Controller
     		echo  "<script>alert('Venda nao efetuada!');</script>";
 		}
 		return redirect()->route('vendas_item_novo', ['id' => $cli->id]);
-        //return VendaController::telaCadastro();
 	}
 	
 	function excluir($id){
 		if (session()->has("login")){
 			$vnd = Venda::find($id);
 
-			if ($vnd->delete()){
-                echo  "<script>alert('Venda $id excluída com sucesso');</script>";
-            } else {
-                echo  "<script>alert('Venda $id nao foi excluída!!!');</script>";
-            }				
-			return 	VendaController::vendasPorCliente($id);
+			(VendaController::exclui_todos_itens($vnd));		
+
+				if ($vnd->delete()){
+					echo  "<script>alert('Venda $id excluída com sucesso');</script>";
+				} else {
+					echo  "<script>alert('Venda $id nao foi excluída!!!');</script>";
+				}	
+							
+			return 	VendaController::todasVendas($id);
 
 		}else{
             return view('tela_login');
@@ -146,6 +148,11 @@ class VendaController extends Controller
 			}
 		}
 		return view('tela_login');
+	}
+
+	private function exclui_todos_itens($venda){
+		$venda->produtos()->wherePivot('id','>',0)->detach();
+
 	}
 
 }
