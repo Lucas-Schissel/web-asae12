@@ -73,7 +73,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Deseja excluir o usuario? Essa operaçao vai excluir todas as vendas associadas!!
+        Deseja excluir o usuario?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#finalizar">Nao</button>

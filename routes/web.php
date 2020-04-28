@@ -40,6 +40,9 @@ Route::get('/dashboard', 'AppController@dashboard')
 	->name('dashboard');
 
 //Vendas
+Route::get('/lista/{id}/itens/remover/{id_pivot}', 'VendaController@excluirItemLista')
+	->name('lista_item_delete');
+
 Route::get('/venda/{id}/itens/remover/{id_pivot}', 'VendaController@excluirItem')
 	->name('vendas_item_delete');
 

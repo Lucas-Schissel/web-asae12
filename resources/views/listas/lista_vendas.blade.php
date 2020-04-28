@@ -33,10 +33,14 @@
 		@foreach ($vendas as $v)
 		<tr>
 			<td id="celula1">{{$v->id }}</td>
-			<td id="celula2">{{$v->updated_at->format('d/m/Y')}}</td>
+			@if($v->updated_at)
+            <td id="celula2">{{$v->updated_at->format('d/m/Y')}}</td>
+            @else
+            <td id="celula2"></td>
+            @endif
 			<td id="celula4">R$: {{$v->valor}}</td> 
 			<td>
-                 <a class="btn btn-warning m-1" href="{{ route('vendas_itens', [ 'id' => $v->id ])}}"> 
+                 <a class="btn btn-warning m-1" href="{{ route('vendas_item_novo', [ 'id' => $v->id ])}}"> 
 			        Alterar
                 	<i class="icon-arrows-cw"></i>
                 </a>
@@ -81,12 +85,5 @@
   </div>
 </div>
 
-<script>
-	function exclui(id){
-		if (confirm("Deseja excluir a venda de id: " + id + "?")){
-			location.href = "/venda/excluir/" + id;
-		}
-	}
-</script>
 
 @endsection

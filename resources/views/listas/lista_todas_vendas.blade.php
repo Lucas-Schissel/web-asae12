@@ -22,11 +22,15 @@
                 @foreach($vendas as $v)
                 <tr>
                     <td id="celula1">{{$v->id}}</td>
+                    @if($v->updated_at)
                     <td id="celula2">{{$v->updated_at->format('d/m/Y')}}</td>
+                    @else
+                    <td id="celula2"></td>
+                    @endif
                     <td id="celula4">R$: {{$v->valor}}</td>
                     <td id="celula2">{{$v->usuario->nome }}</td>    
                     <td>
-                        <a class="btn btn-warning m-1" href="{{ route('vendas_itens', [ 'id' => $v->id ])}}"> 
+                        <a class="btn btn-warning m-1" href="{{ route('vendas_item_novo', [ 'id' => $v->id ])}}"> 
 			                    Alterar
                           <i class="icon-arrows-cw"></i>
                         </a>

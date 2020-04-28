@@ -68,7 +68,9 @@ tbody{
     width: 50px;
 }
 
-.btn{
-    width: 108px;
+#input_vendas{
+    text-align:center;
+    min-width:50px;
 }
+
 

@@ -53,11 +53,20 @@
         </table>
 
     </div>
+
+<div class= "row">
+	<div class="navbar-expand-lg navbar navbar-dark bg-dark w-100">
+		<a class="btn btn-secondary m-1 p-1" type="button2" href="{{ route('vendas_total') }}">
+			<i class="icon-left-circled"></i>
+			Voltar		
+		</a>
+	</div>
+</div>
     
 <script>
 	function exclui(id){
 		if (confirm("Deseja excluir o item de id: " + id + "?")){
-			location.href = "/venda/{{ $venda->id }}/itens/remover/" + id;
+			location.href = "/lista/{{ $venda->id }}/itens/remover/" + id;
 		}
 	}
 </script>

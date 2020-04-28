@@ -45,15 +45,20 @@ class VendaController extends Controller
 	
 	function excluir($id){
 		if (session()->has("login")){
-			$vnd = Venda::find($id);
+			$venda = Venda::find($id);
 
-			VendaController::exclui_todos_itens($vnd);		
+			$var = DB::table('produtos_venda')->where('id_venda','=',$id)->first();
 
-				if ($vnd->delete()){
+            if($var){
+                echo  "<script>alert('O venda nao pode ser excluida pois tem itens associadas');</script>"; 
+            }else{	
+
+				if ($venda->delete()){
 					echo  "<script>alert('Venda $id excluída com sucesso');</script>";
 				} else {
 					echo  "<script>alert('Venda $id nao foi excluída!!!');</script>";
-				}								
+				}	
+			}							
 			return 	VendaController::todasVendas($id);
 		}else{
             return view('tela_login');
@@ -105,7 +110,9 @@ class VendaController extends Controller
 
 	function adicionarItem(Request $req, $id){
 		$id_produto = $req->input('id_produto');
-		$quantidade = $req->input('quantidade');
+		$qtd = $req->input('quantidade');
+		
+		$quantidade = intval($qtd);
 
 		$produto = Produto::find($id_produto);
 		$venda = Venda::find($id);
@@ -135,6 +142,22 @@ class VendaController extends Controller
 
 	}
 
+	function excluirItemLista($id , $id_pivot){
+		$venda = Venda::find($id);
+		$subtotal = DB::table('produtos_venda')->where('id',$id_pivot)->value('subtotal');
+
+		$venda->valor = $venda->valor - $subtotal;
+		$venda->produtos()->wherePivot('id','=',$id_pivot)->detach();
+		$venda->save();
+		$var = DB::table('produtos_venda')->where('id_venda','=',$id)->first();
+		if($var){
+			return view('listas.lista_itens_venda', ['venda' => $venda]);
+		}else{
+			$venda->delete();
+			return redirect()->route('vendas_total');
+		}
+	}
+
 	function validar($id){
 		if (session()->has("login")){
 			$venda = Venda::find($id);
@@ -146,11 +169,6 @@ class VendaController extends Controller
 			}
 		}
 		return view('tela_login');
-	}
-
-	private function exclui_todos_itens($venda){
-		$venda->produtos()->wherePivot('id','>',0)->detach();
-
 	}
 
 }
