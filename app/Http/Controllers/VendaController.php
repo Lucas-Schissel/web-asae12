@@ -190,8 +190,9 @@ class VendaController extends Controller
 			if(($venda->valor)>0){
 				return	VendaController::todasVendas();
 			}else{
-				echo "Nao pode adicionar venda sem itens!"; 
-				return redirect()->route('vendas_item_novo', ['id' => $venda->id]);
+				echo "<script>alert('Nao é possivel adicionar uma venda sem itens!!! A venda nao foi salva');</script>";
+				$venda->delete();
+				return	VendaController::todasVendas();
 			}
 		}else{
 		return view('tela_login');
