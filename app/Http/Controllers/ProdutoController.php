@@ -30,40 +30,46 @@ class ProdutoController extends Controller
     }
 
     function adicionar(Request $req){
-        $nome = $req->input('nome');
-        $preco = $req->input('preco');
-        $categoria = $req->input('id_categoria');
-        $und = $req->input('id_unidade');
-    	
-    	$pdr = new Produto();
-        $pdr->nome = $nome;
-        $pdr->preco = $preco;
-        $pdr->id_categoria = $categoria;
-        $pdr->id_unidade = $und;
+        if (session()->has("login")){
+            $nome = $req->input('nome');
+            $preco = $req->input('preco');
+            $categoria = $req->input('id_categoria');
+            $und = $req->input('id_unidade');
+            
+            $pdr = new Produto();
+            $pdr->nome = $nome;
+            $pdr->preco = $preco;
+            $pdr->id_categoria = $categoria;
+            $pdr->id_unidade = $und;
 
-    	if ($pdr->save()){
-            echo  "<script>alert('Produto $nome adicionado com Sucesso!');</script>";
-    	} else {
-            echo  "<script>alert('Produto $nome nao foi adicionado!!!');</script>";
-    	}
-        return ProdutoController::telaCadastro();
+            if ($pdr->save()){
+                echo  "<script>alert('Produto $nome adicionado com Sucesso!');</script>";
+            } else {
+                echo  "<script>alert('Produto $nome nao foi adicionado!!!');</script>";
+            }
+            return ProdutoController::telaCadastro();
+        }
+        return view('tela_login');
     }
 
     function alterar(Request $req, $id){
-        $pdr = Produto::find($id);
-        $nome = $req->input('nome');
-        $preco = $req->input('preco');
+        if (session()->has("login")){
+            $pdr = Produto::find($id);
+            $nome = $req->input('nome');
+            $preco = $req->input('preco');
 
-        $pdr->preco = $preco;
-        $pdr->nome = $nome;
-      
-        if ($pdr->save()){
-            echo  "<script>alert('Produto $nome alterado com Sucesso!');</script>";
-        } else {
-            echo  "<script>alert('Produto $nome nao foi alterado!!!');</script>";
+            $pdr->preco = $preco;
+            $pdr->nome = $nome;
+        
+            if ($pdr->save()){
+                echo  "<script>alert('Produto $nome alterado com Sucesso!');</script>";
+            } else {
+                echo  "<script>alert('Produto $nome nao foi alterado!!!');</script>";
+            }
+
+            return ProdutoController::listar();
         }
-
-        return ProdutoController::listar();
+        return view('tela_login');
     }
 
     function listar(){

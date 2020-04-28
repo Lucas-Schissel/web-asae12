@@ -52,36 +52,39 @@ class ClienteController extends Controller
     }
 
     function alterar(Request $req, $id){
-        $cli = Cliente::find($id);
+        if (session()->has("login")){
+            $cli = Cliente::find($id);
 
-        $nome_inicial = $cli->nome;
-        $login_inicial = $cli->login;
-        $senha_inicial = $cli->senha;
+            $nome_inicial = $cli->nome;
+            $login_inicial = $cli->login;
+            $senha_inicial = $cli->senha;
 
-        $nome = $req->input('nome');
-        $login = $req->input('login');
-        $senha = $req->input('senha');
+            $nome = $req->input('nome');
+            $login = $req->input('login');
+            $senha = $req->input('senha');
 
-        $cli->nome = $nome;
-        $cli->login = $login;
-        $cli->senha = $senha;
+            $cli->nome = $nome;
+            $cli->login = $login;
+            $cli->senha = $senha;
 
-        $compara_login = DB::table('clientes')->where('login',$login)->value('login');
-        if(($compara_login == $login) && ($login != $login_inicial)){
-            echo  "<script>alert('O login: $login ja esta em uso!');</script>";
-            return view("telas_updates.alterar_cliente", [ "cli" => $cli ]);
-        }else if ($nome_inicial != $nome || $login_inicial != $login || $senha_inicial != $senha){
+            $compara_login = DB::table('clientes')->where('login',$login)->value('login');
+            if(($compara_login == $login) && ($login != $login_inicial)){
+                echo  "<script>alert('O login: $login ja esta em uso!');</script>";
+                return view("telas_updates.alterar_cliente", [ "cli" => $cli ]);
+            }else if ($nome_inicial != $nome || $login_inicial != $login || $senha_inicial != $senha){
 
-            if ($cli->save()){
-                echo  "<script>alert('Cliente $nome alterado com sucesso');</script>";
-            } else {
-                echo  "<script>alert('Cliente $nome nao foi alterado!');</script>";
+                if ($cli->save()){
+                    echo  "<script>alert('Cliente $nome alterado com sucesso');</script>";
+                } else {
+                    echo  "<script>alert('Cliente $nome nao foi alterado!');</script>";
+                }
+                return  ClienteController::listar();
+            }else{
+                echo  "<script>alert('Ok, voce nao alterou nada, mas nao se preocupe seus dados foram preservados!!');</script>";
+                return  ClienteController::listar();
             }
-            return  ClienteController::listar();
-        }else{
-            echo  "<script>alert('Ok, voce nao alterou nada, mas nao se preocupe seus dados foram preservados!!');</script>";
-            return  ClienteController::listar();
         }
+        return view('tela_login');
     }
 
     function excluir($id){

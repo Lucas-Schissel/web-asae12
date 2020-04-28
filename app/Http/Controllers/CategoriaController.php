@@ -24,37 +24,44 @@ class CategoriaController extends Controller
     }
 
     function adicionar(Request $req){
-        $nome = $req->input('nome');
-        $descricao = $req->input('descricao');
-            	
-    	$ctg = new Categoria();
-        $ctg->nome = $nome;
-        $ctg->descricao = $descricao;       
+        if (session()->has("login")){
+            $nome = $req->input('nome');
+            $descricao = $req->input('descricao');
+                    
+            $ctg = new Categoria();
+            $ctg->nome = $nome;
+            $ctg->descricao = $descricao;       
 
-    	if ($ctg->save()){
-            echo  "<script>alert('Categoria $nome adicionada com Sucesso!');</script>";
-    	} else {
-            echo  "<script>alert('Categoria $nome nao foi adicionada!!!');</script>";
-    	}
-        return CategoriaController::telaCadastro();
+            if ($ctg->save()){
+                echo  "<script>alert('Categoria $nome adicionada com Sucesso!');</script>";
+            } else {
+                echo  "<script>alert('Categoria $nome nao foi adicionada!!!');</script>";
+            }
+            return CategoriaController::telaCadastro();
+        }
+        return view('tela_login');
     }
 
     function alterar(Request $req, $id){
-        $ctg = Categoria::find($id);
-        $nome = $req->input('nome');
-        $descricao = $req->input('descricao');
+        if (session()->has("login")){
+            $ctg = Categoria::find($id);
+            $nome = $req->input('nome');
+            $descricao = $req->input('descricao');
 
-        $ctg->nome = $nome;
-        $ctg->descricao = $descricao;
+            $ctg->nome = $nome;
+            $ctg->descricao = $descricao;
+            
         
-      
-        if ($ctg->save()){
-            echo  "<script>alert('Categoria $nome alterada com Sucesso!');</script>";
-        } else {
-            echo  "<script>alert('Categoria $nome nao foi alterada!!!');</script>";
-        }
+            if ($ctg->save()){
+                echo  "<script>alert('Categoria $nome alterada com Sucesso!');</script>";
+            } else {
+                echo  "<script>alert('Categoria $nome nao foi alterada!!!');</script>";
+            }
 
-        return CategoriaController::listar();
+            return CategoriaController::listar();
+        }
+        return view('tela_login');    
+        
     }
 
     function listar(){

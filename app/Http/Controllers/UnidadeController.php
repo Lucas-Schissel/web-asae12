@@ -25,32 +25,38 @@ class UnidadeController extends Controller
     }
 
     function adicionar(Request $req){
-        $nome = $req->input('nome');
-            	
-    	$unidade = new Unidade();
-        $unidade->nome = $nome;     
+        if (session()->has("login")){
+            $nome = $req->input('nome');
+                    
+            $unidade = new Unidade();
+            $unidade->nome = $nome;     
 
-    	if ($unidade->save()){
-            echo  "<script>alert('Unidade $nome adicionada com Sucesso!');</script>";
-    	} else {
-            echo  "<script>alert('Unidade $nome nao foi adicionada!!!');</script>";
-    	}
-        return UnidadeController::telaCadastro();
+            if ($unidade->save()){
+                echo  "<script>alert('Unidade $nome adicionada com Sucesso!');</script>";
+            } else {
+                echo  "<script>alert('Unidade $nome nao foi adicionada!!!');</script>";
+            }
+            return UnidadeController::telaCadastro();
+        }
+        return view('tela_login');
     }
 
     function alterar(Request $req, $id){
-        $unidade = Unidade::find($id);
-        $nome = $req->input('nome');
+        if (session()->has("login")){
+            $unidade = Unidade::find($id);
+            $nome = $req->input('nome');
 
-        $unidade->nome = $nome;
-        
-        if ($unidade->save()){
-            echo  "<script>alert('Unidade $nome alterada com Sucesso!');</script>";
-        } else {
-            echo  "<script>alert('Unidade $nome nao foi alterada!!!');</script>";
+            $unidade->nome = $nome;
+            
+            if ($unidade->save()){
+                echo  "<script>alert('Unidade $nome alterada com Sucesso!');</script>";
+            } else {
+                echo  "<script>alert('Unidade $nome nao foi alterada!!!');</script>";
+            }
+
+            return UnidadeController::listar();
         }
-
-        return UnidadeController::listar();
+        return view('tela_login');
     }
 
     function listar(){
